@@ -25,11 +25,15 @@ export default function BookPage({ params }: { params: { slug: string } }) {
         </div>
 
         <div className="product-direct">
-          <span className="kicker">{book.format}</span>
+          <span className="product-kicker">{book.format}</span>
           <h1>{book.name}</h1>
           {book.subtitle ? <p className="product-subtitle">{book.subtitle}</p> : null}
           <p className="product-description">{book.description}</p>
-          <p className="product-price">{book.priceLabel}</p>
+
+          <div className="product-meta-row">
+            <span>Eric J. Finkley</span>
+            <strong>{book.priceLabel}</strong>
+          </div>
 
           <a
             className="product-buy"
@@ -39,10 +43,6 @@ export default function BookPage({ params }: { params: { slug: string } }) {
           >
             Buy direct ↗
           </a>
-
-          <p className="checkout-note">
-            Printing, checkout, and fulfillment are handled through Lulu Direct.
-          </p>
         </div>
       </section>
     </main>
