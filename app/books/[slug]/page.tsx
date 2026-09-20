@@ -12,11 +12,10 @@ export default function BookPage({ params }: { params: { slug: string } }) {
 
   return (
     <main className="product-page">
-      <Link href="/" className="back-link">← BACK TO STORE</Link>
+      <Link href="/" className="back-link">← Back to store</Link>
 
       <section className="product-detail-grid">
         <div className="product-cover-stage">
-          <div className="product-cover-shadow" />
           <img
             className="product-cover-art"
             src={book.coverImage}
@@ -25,19 +24,19 @@ export default function BookPage({ params }: { params: { slug: string } }) {
         </div>
 
         <div className="product-direct">
-          <p className="store-eyebrow">{book.format.toUpperCase()}</p>
+          <span className="kicker">{book.format}</span>
           <h1>{book.name}</h1>
           {book.subtitle ? <p className="product-subtitle">{book.subtitle}</p> : null}
           <p className="product-description">{book.description}</p>
           <p className="product-price">{book.priceLabel}</p>
 
           <a
-            className="direct-buy product-buy"
+            className="product-buy"
             href={book.checkoutUrl}
             target="_blank"
             rel="noreferrer"
           >
-            BUY DIRECT ↗
+            Buy direct ↗
           </a>
 
           <p className="checkout-note">
