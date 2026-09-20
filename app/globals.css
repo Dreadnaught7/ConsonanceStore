@@ -1,5 +1,7 @@
 :root {
   --bg: #05070b;
+  --mx: 78vw;
+  --my: 18vh;
   --bg-2: #080b11;
   --panel: #0b1018;
   --panel-2: #101722;
@@ -36,7 +38,8 @@ button { font: inherit; }
   background:
     linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
-    radial-gradient(circle at 85% 6%, rgba(22,57,94,.24), transparent 30%),
+    radial-gradient(520px 420px at var(--mx) var(--my), rgba(28,77,132,.18), transparent 72%),
+    radial-gradient(circle at 85% 6%, rgba(22,57,94,.18), transparent 30%),
     linear-gradient(180deg, #05070b 0%, #080b10 48%, #05070b 100%);
   background-size: 48px 48px, 48px 48px, auto, auto;
 }
@@ -133,7 +136,7 @@ button { font: inherit; }
 .store-hero {
   position: relative;
   border-bottom: 1px solid var(--line);
-  padding: 92px 0 76px;
+  padding: 78px 0 70px;
 }
 
 .store-hero::after {
@@ -148,8 +151,8 @@ button { font: inherit; }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.35fr .65fr;
-  gap: 54px;
+  grid-template-columns: 1.08fr .92fr;
+  gap: 68px;
   align-items: end;
 }
 
@@ -174,15 +177,15 @@ button { font: inherit; }
 .store-hero h1 {
   margin: 16px 0 20px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3.15rem, 6vw, 6.3rem);
-  line-height: .82;
+  font-size: clamp(2.8rem, 4.7vw, 5.15rem);
+  line-height: .88;
   letter-spacing: -.055em;
   font-weight: 700;
   text-shadow: 0 18px 45px rgba(0,0,0,.50);
 }
 
 .hero-copy {
-  max-width: 670px;
+  max-width: 760px;
   margin: 0;
   color: #c3cbd5;
   font-size: 1rem;
@@ -238,7 +241,7 @@ button { font: inherit; }
 
 .signal-panel {
   position: relative;
-  min-height: 242px;
+  min-height: 278px;
   padding: 24px;
   border: 1px solid var(--line-strong);
   background:
@@ -267,9 +270,9 @@ button { font: inherit; }
 
 .signal-panel strong {
   display: block;
-  margin: 42px 0 28px;
+  margin: 56px 0 34px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-size: clamp(2.6rem, 5vw, 5rem);
   letter-spacing: -.04em;
   line-height: .9;
   animation: signalIn .28s ease both;
@@ -798,7 +801,7 @@ button { font: inherit; }
   .store-nav nav a:not(:last-child) { display: none; }
   .brand-type small { display: none; }
   .store-hero { padding: 64px 0 52px; }
-  .store-hero h1 { font-size: 4rem; }
+  .store-hero h1 { font-size: 3rem; }
   .store-book {
     grid-template-columns: 110px 1fr;
     gap: 20px;
