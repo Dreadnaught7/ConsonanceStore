@@ -23,6 +23,22 @@ export type StoreProduct = {
 
 export const STORE_PRODUCTS: StoreProduct[] = [
   {
+    slug: "who-are-we-book-one-the-record",
+    name: "WHO ARE WE?",
+    subtitle: "Slavery, Its Descendants, and the Making of America — Book One: The Record",
+    format: "Paperback · 8.5 × 11 · 251 pages · Direct edition",
+    priceLabel: "$29.99",
+    category: "history",
+    coverImage: "/covers/who-are-we.svg",
+    description:
+      "A record-driven reconstruction of enslaved people as human beings: reconnecting records to people, people to families, families to place, and those connections to the larger history of America.",
+    checkoutUrl:
+      "https://svc.lulu.com/?items=d8b832c3-6f2e-44e3-890f-1bd0777d6731",
+    provider: "lulu",
+    pageCount: 251,
+    availableForDirectCheckout: true,
+  },
+  {
     slug: "the-resonance-method-second-edition",
     name: "The Resonance Method",
     subtitle: "Second Edition",
