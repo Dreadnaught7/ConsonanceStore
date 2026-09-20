@@ -814,3 +814,33 @@ button, input { font: inherit; }
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Lulu Direct native purchase components */
+.lulu-native-button {
+  width: 100%;
+}
+.lulu-native-button.compact {
+  min-height: 31px;
+  display: flex;
+  align-items: center;
+}
+.lulu-native-button.compact lulu-buy-button {
+  width: 100%;
+}
+.product-native {
+  margin-top: 4px;
+  max-width: 560px;
+}
+.product-native.showcase {
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(10,15,20,.72);
+}
+.native-fallback-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--gold-bright);
+  font-size: .66rem;
+  letter-spacing: .04em;
+}
