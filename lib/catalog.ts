@@ -6,6 +6,7 @@ export type StoreProduct = {
   priceLabel: string;
   description: string;
   checkoutUrl: string;
+  buyButtonId?: string;
   coverImage: string;
   category: "history" | "method";
   titleId?: string;
