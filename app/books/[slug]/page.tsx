@@ -12,27 +12,38 @@ export default function BookPage({ params }: { params: { slug: string } }) {
 
   return (
     <main className="product-page">
-      <Link href="/" className="back-link">← Back to books</Link>
+      <Link href="/" className="back-link">← BACK TO STORE</Link>
 
-      <section className="product-direct">
-        <p className="store-eyebrow">{book.format}</p>
-        <h1>{book.name}</h1>
-        {book.subtitle ? <p className="product-subtitle">{book.subtitle}</p> : null}
-        <p className="product-description">{book.description}</p>
-        <p className="product-price">{book.priceLabel}</p>
+      <section className="product-detail-grid">
+        <div className="product-cover-stage">
+          <div className="product-cover-shadow" />
+          <img
+            className="product-cover-art"
+            src={book.coverImage}
+            alt={"Cover of " + book.name}
+          />
+        </div>
 
-        <a
-          className="direct-buy product-buy"
-          href={book.checkoutUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Buy direct through Lulu
-        </a>
+        <div className="product-direct">
+          <p className="store-eyebrow">{book.format.toUpperCase()}</p>
+          <h1>{book.name}</h1>
+          {book.subtitle ? <p className="product-subtitle">{book.subtitle}</p> : null}
+          <p className="product-description">{book.description}</p>
+          <p className="product-price">{book.priceLabel}</p>
 
-        <p className="checkout-note">
-          Printing, checkout, and fulfillment are handled securely through Lulu Direct.
-        </p>
+          <a
+            className="direct-buy product-buy"
+            href={book.checkoutUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            BUY DIRECT ↗
+          </a>
+
+          <p className="checkout-note">
+            Printing, checkout, and fulfillment are handled through Lulu Direct.
+          </p>
+        </div>
       </section>
     </main>
   );
