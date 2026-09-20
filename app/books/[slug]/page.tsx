@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import BuyForm from "@/components/BuyForm";
 import { getProduct, STORE_PRODUCTS } from "@/lib/catalog";
 
 export function generateStaticParams() {
@@ -24,24 +25,28 @@ export default function BookPage({ params }: { params: { slug: string } }) {
         </div>
 
         <div className="product-direct">
-          <span className="kicker">{book.format}</span>
+          <span className="product-kicker">{book.format}</span>
           <h1>{book.name}</h1>
           {book.subtitle ? <p className="product-subtitle">{book.subtitle}</p> : null}
           <p className="product-description">{book.description}</p>
-          <p className="product-price">{book.priceLabel}</p>
 
-          <a
-            className="product-buy"
-            href={book.checkoutUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Buy direct ↗
-          </a>
+          <div className="product-meta-row">
+            <span>Eric J. Finkley</span>
+            <strong>{book.priceLabel}</strong>
+          </div>
 
-          <p className="checkout-note">
-            Printing, checkout, and fulfillment are handled through Lulu Direct.
-          </p>
+          {book.availableForDirectCheckout && book.priceCents ? (
+            <BuyForm slug={book.slug} priceCents={book.priceCents} />
+          ) : (
+            <a
+              className="product-buy"
+              href={book.checkoutUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Buy now ↗
+            </a>
+          )}
         </div>
       </section>
     </main>
