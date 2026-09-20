@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { STORE_PRODUCTS } from "@/lib/catalog";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1432183163557-d2779f981bd3?auto=format&fit=crop&q=88&w=2400";
@@ -130,9 +130,18 @@ export default function HomePage() {
                   <strong>{book.priceLabel}</strong>
                   <div className="book-actions">
                     <a className="book-details" href={"/books/" + book.slug}>Description + buy →</a>
-                    <a className="book-buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
-                      Buy direct
-                    </a>
+                    {book.buyButtonId && book.buyButtonVariant === "button-only" ? (
+                      <div className="lulu-native-button compact">
+                        {React.createElement("lulu-buy-button", {
+                          "buy-button-id": book.buyButtonId,
+                          variant: "button-only",
+                        })}
+                      </div>
+                    ) : (
+                      <a className="book-buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
+                        Buy direct
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>
