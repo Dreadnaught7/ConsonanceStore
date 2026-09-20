@@ -7,6 +7,17 @@ export type StoreProduct = {
   description: string;
   checkoutUrl: string;
   category: "history" | "method";
+  titleId?: string;
+  priceCents?: number;
+  currency?: "usd";
+  stripeProductId?: string;
+  stripePriceId?: string;
+  provider?: "lulu" | "ingram_manual";
+  providerProjectId?: string;
+  isbn?: string;
+  pageCount?: number;
+  podPackageId?: string;
+  availableForDirectCheckout?: boolean;
 };
 
 export const STORE_PRODUCTS: StoreProduct[] = [
@@ -21,6 +32,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
       "A practical framework for observing clearly, aligning with what is true, acting with intention, and learning from the echo of results.",
     checkoutUrl:
       "https://svc.lulu.com/?items=c36f44ae-dc16-451e-86ad-99929d9c2186",
+    availableForDirectCheckout: false,
   },
   {
     slug: "grounds-harlem",
@@ -33,6 +45,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
       "Harlem as place, evidence, argument, and inheritance — tracing the ground before the legend and the systems that shaped the people.",
     checkoutUrl:
       "https://svc.lulu.com/?items=2e105102-6127-43b3-a019-9d0d2dbf9bf1",
+    availableForDirectCheckout: false,
   },
   {
     slug: "the-air-was-safe",
@@ -45,6 +58,16 @@ export const STORE_PRODUCTS: StoreProduct[] = [
       "A record-driven examination of what officials knew, what the public was told, and what the evidence revealed after September 11.",
     checkoutUrl:
       "https://svc.lulu.com/?items=2fc771d6-ffc7-4421-b062-93f85aea265b",
+    titleId: "CP-BK-911-001",
+    priceCents: 1599,
+    currency: "usd",
+    stripeProductId: "prod_VI52lJDTWcUKzq",
+    stripePriceId: "price_1UHUsRCo4zEKqUT5FsHieBjb",
+    provider: "lulu",
+    providerProjectId: "zmv7j6r",
+    pageCount: 82,
+    podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
+    availableForDirectCheckout: true,
   },
 ];
 
