@@ -1,30 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
-const books = [
-  {
-    title: "The Resonance Method",
-    subtitle: "Second Edition",
-    price: "$16.99",
-    className: "cover-resonance",
-    checkout: "https://svc.lulu.com/?items=c36f44ae-dc16-451e-86ad-99929d9c2186",
-  },
-  {
-    title: "GROUNDS: Harlem",
-    subtitle: "A Place. A People. A Longer Story.",
-    price: "Buy direct",
-    className: "cover-harlem",
-    checkout: "https://svc.lulu.com/?items=2e105102-6127-43b3-a019-9d0d2dbf9bf1",
-  },
-  {
-    title: "The Air Was Safe",
-    subtitle: "September 11 · Records · Public Assurance",
-    price: "$15.99",
-    className: "cover-air",
-    checkout: "https://svc.lulu.com/?items=2fc771d6-ffc7-4421-b062-93f85aea265b",
-  },
-];
+import { STORE_PRODUCTS } from "@/lib/catalog";
 
 export default function HomePage() {
   const progressRef = useRef<HTMLDivElement>(null);
@@ -50,6 +27,8 @@ export default function HomePage() {
     };
   }, []);
 
+  const featured = STORE_PRODUCTS.slice(0, 3);
+
   return (
     <main className="store-page">
       <div className="scroll-progress" ref={progressRef} />
@@ -60,9 +39,10 @@ export default function HomePage() {
             <span className="brand-mark">C</span>
             <span className="brand-copy">
               <b>CONSONANCE</b>
-              <small>PUBLISHING</small>
+              <small>IDEAS FOR A MORE HUMAN TOMORROW</small>
             </span>
           </a>
+
           <nav>
             <a href="#books">Books</a>
             <a href="#about">About</a>
@@ -70,93 +50,119 @@ export default function HomePage() {
               Intelligence ↗
             </a>
           </nav>
+
+          <a className="support-button" href="#books">Support the work</a>
         </div>
       </header>
 
       <section className="hero" id="top">
-        <div className="hero-image" />
-        <div className="hero-overlay" />
-        <div className="shell hero-content">
+        <div className="hero-photo" />
+        <div className="hero-vignette" />
+        <div className="hero-glow" />
+
+        <div className="shell hero-layout">
+          <aside className="hero-left-rail">
+            <span>BOOKS</span>
+            <span>IDEAS</span>
+            <span>RESEARCH</span>
+            <span>CULTURE</span>
+            <span>A MORE HUMAN</span>
+            <span>TOMORROW</span>
+            <i />
+          </aside>
+
           <div className="hero-copy">
-            <p className="eyebrow">IDEAS BELONG HERE</p>
-            <h1>Consonance<br />Publishing</h1>
-            <p className="hero-deck">
-              Books with weight. Work with memory. Stories and research rooted in New York and built to travel.
+            <h1>
+              <span className="gold">NEW YORK</span>
+              <span className="gold">IDEAS TRAVEL</span>
+              <span>FURTHER HERE.</span>
+            </h1>
+            <p>
+              Independent books for curious minds — exploring history, technology, culture,
+              and what comes next.
             </p>
             <div className="hero-actions">
-              <a className="button primary" href="#books">Explore books →</a>
-              <a className="button secondary" href="#about">Our mission</a>
+              <a className="button primary" href="#books">Browse books →</a>
+              <a className="button ghost" href="#about">Our mission</a>
             </div>
           </div>
 
-          <aside className="hero-side">
-            <span>PEOPLE</span>
-            <span>PLACES</span>
-            <span>PERSPECTIVES</span>
-            <span>PROGRESS</span>
+          <aside className="hero-right-rail">
+            <div className="rail-words">
+              <span>PEOPLE</span>
+              <span>PLACES</span>
+              <span>STORIES</span>
+              <span>IDEAS</span>
+              <span>STILL</span>
+              <span>MATTER</span>
+            </div>
+            <div className="harlem-plaque">
+              <strong>Harlem</strong>
+              <small>A More Human Tomorrow</small>
+            </div>
           </aside>
         </div>
       </section>
 
-      <section className="shell featured" id="books">
-        <div className="section-title-row">
-          <div>
+      <section className="featured" id="books">
+        <div className="shell featured-layout">
+          <div className="featured-intro">
             <p className="eyebrow">FEATURED BOOKS</p>
-            <h2>Current shelf</h2>
+            <h2>Different questions.<br />A richer conversation.</h2>
+            <a href="#books">View all books →</a>
           </div>
-          <span className="rule" />
-        </div>
 
-        <div className="book-grid">
-          {books.map((book) => (
-            <article className="book-card" key={book.title}>
-              <div className={"book-cover " + book.className}>
-                <div className="cover-noise" />
-                <div className="cover-title">{book.title}</div>
-                <div className="cover-sub">{book.subtitle}</div>
-                <div className="cover-author">ERIC J. FINKLEY</div>
-              </div>
-              <div className="book-copy">
-                <h3>{book.title}</h3>
-                <p>{book.subtitle}</p>
-                <div className="book-buy-row">
-                  <strong>{book.price}</strong>
-                  <a href={book.checkout} target="_blank" rel="noreferrer">Buy direct ↗</a>
+          <div className="book-list">
+            {featured.map((book) => (
+              <article className="book-card" key={book.slug}>
+                <a className="book-cover" href={"/books/" + book.slug}>
+                  <img src={book.coverImage} alt={"Cover of " + book.name} />
+                </a>
+                <div className="book-card-copy">
+                  <h3>{book.name}</h3>
+                  {book.subtitle ? <p>{book.subtitle}</p> : null}
+                  <span>Eric J. Finkley</span>
+                  <strong>{book.priceLabel}</strong>
+                  <a className="book-buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
+                    Buy direct
+                  </a>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="mission" id="about">
-        <div className="mission-city" />
-        <div className="mission-overlay" />
-        <div className="shell mission-grid">
-          <div className="mission-copy">
-            <p className="eyebrow">OUR MISSION</p>
-            <h2>Books that move people forward.</h2>
-            <p>
-              Consonance Publishing exists to preserve evidence, widen context, and create work that leaves the reader with more room to think — not less.
-            </p>
-          </div>
-
+      <section className="lower-grid" id="about">
+        <div className="city-panel apollo-panel">
+          <div className="panel-overlay" />
           <blockquote>
-            “Language should increase the reader’s ability to see, not reduce the reader’s ability to choose.”
+            “Our stories were never the footnote.<br />They were the foundation.”
+            <span>— Eric J. Finkley</span>
           </blockquote>
         </div>
-      </section>
 
-      <section className="city-strip">
-        <div className="city-tile tile-one">
-          <span>READ</span>
-          <span>THINK</span>
-          <span>BELONG</span>
-          <span>BUILD</span>
+        <div className="mission-panel">
+          <p className="eyebrow">CONSONANCE</p>
+          <h2>Independent ideas.<br />Real impact.</h2>
+          <p>
+            Consonance Publishing exists to explore the deeper questions — and to amplify
+            voices that challenge, connect, and inspire.
+          </p>
+          <a href="#books">Learn more →</a>
         </div>
-        <div className="city-tile tile-two" />
-        <div className="city-tile tile-three">
-          <span>A BRIGHTER TOMORROW READS HERE.</span>
+
+        <div className="newsletter-panel">
+          <div className="newsletter-photo" />
+          <div className="newsletter-overlay" />
+          <div className="newsletter-copy">
+            <p className="eyebrow">STAY IN THE LOOP</p>
+            <h3>New releases, essays, and updates from Consonance.</h3>
+            <form onSubmit={(event) => event.preventDefault()}>
+              <input type="email" aria-label="Email address" placeholder="Your email address" />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
         </div>
       </section>
 
@@ -166,10 +172,20 @@ export default function HomePage() {
             <span className="brand-mark">C</span>
             <span className="brand-copy">
               <b>CONSONANCE</b>
-              <small>PUBLISHING</small>
+              <small>IDEAS FOR A MORE HUMAN TOMORROW</small>
             </span>
           </div>
-          <span>© 2026 EJFinkley Holdings Inc.</span>
+
+          <nav>
+            <a href="#books">Books</a>
+            <a href="#about">About</a>
+            <a href="https://consonanceintelligence.com/" target="_blank" rel="noreferrer">Intelligence ↗</a>
+          </nav>
+
+          <div className="footer-right">
+            <span>© 2026 Consonance Publishing</span>
+            <small>EJFinkley Holdings Inc.</small>
+          </div>
         </div>
       </footer>
     </main>
