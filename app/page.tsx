@@ -19,6 +19,11 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
+    const onPointerMove = (event: PointerEvent) => {
+      document.documentElement.style.setProperty("--mx", event.clientX + "px");
+      document.documentElement.style.setProperty("--my", event.clientY + "px");
+    };
+
     const onScroll = () => {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       if (progressRef.current) {
@@ -26,9 +31,15 @@ export default function HomePage() {
           (total > 0 ? (window.scrollY / total) * 100 : 0) + "%";
       }
     };
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   const books = useMemo(
