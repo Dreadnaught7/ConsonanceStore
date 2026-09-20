@@ -48,6 +48,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
       "Harlem as place, evidence, argument, and inheritance — tracing the ground before the legend and the systems that shaped the people.",
     checkoutUrl:
       "https://svc.lulu.com/?items=2e105102-6127-43b3-a019-9d0d2dbf9bf1",
+    buyButtonId: "2e105102-6127-43b3-a019-9d0d2dbf9bf1",
     availableForDirectCheckout: false,
   },
   {
