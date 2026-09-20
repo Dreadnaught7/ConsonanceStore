@@ -141,8 +141,8 @@ button, input { font: inherit; }
   position: absolute;
   inset: 0;
   background:
-    url("https://images.unsplash.com/photo-1522083165195-3424ed129620?auto=format&fit=crop&q=88&w=2400")
-    center 48% / cover no-repeat;
+    url("https://images.unsplash.com/photo-1432183163557-d2779f981bd3?auto=format&fit=crop&q=88&w=2400")
+    center 46% / cover no-repeat;
   filter: saturate(.84) contrast(1.05);
   transform: scale(1.02);
 }
@@ -261,29 +261,6 @@ button, input { font: inherit; }
   border-left: 1px solid rgba(216,167,80,.65);
 }
 
-.harlem-plaque {
-  padding: 20px 18px;
-  border: 1px solid rgba(216,167,80,.50);
-  background: rgba(7,10,13,.65);
-  box-shadow: 0 16px 28px rgba(0,0,0,.30);
-}
-
-.harlem-plaque strong {
-  display: block;
-  color: #e8c27a;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 2rem;
-  font-weight: 400;
-}
-
-.harlem-plaque small {
-  display: block;
-  margin-top: 10px;
-  color: #b8b6b0;
-  font-size: .66rem;
-  letter-spacing: .06em;
-}
-
 .featured {
   background: #070a0e;
   border-top: 1px solid rgba(255,255,255,.06);
@@ -317,10 +294,16 @@ button, input { font: inherit; }
   font-weight: 400;
 }
 
-.featured-intro > a,
+.catalog-label,
 .mission-panel > a {
   color: var(--gold-bright);
   font-size: .70rem;
+  letter-spacing: .08em;
+}
+
+.catalog-label {
+  display: inline-block;
+  opacity: .72;
 }
 
 .book-list {
@@ -494,29 +477,14 @@ button, input { font: inherit; }
   line-height: 1.5;
 }
 
-.newsletter-copy form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0;
+.newsletter-status {
   max-width: 400px;
-}
-
-.newsletter-copy input {
-  min-width: 0;
-  height: 38px;
-  padding: 0 12px;
-  border: 1px solid rgba(255,255,255,.25);
-  background: rgba(5,8,11,.78);
-  color: var(--text);
-}
-
-.newsletter-copy button {
-  border: 0;
-  padding: 0 16px;
-  background: linear-gradient(180deg,#efc976,#c69742);
-  color: #111;
-  font-size: .66rem;
-  font-weight: 700;
+  padding: 10px 12px;
+  border-left: 1px solid var(--gold);
+  background: rgba(5,8,11,.62);
+  color: #c6ccd2;
+  font-size: .68rem;
+  letter-spacing: .04em;
 }
 
 .site-footer {
