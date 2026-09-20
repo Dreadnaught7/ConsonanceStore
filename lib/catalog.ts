@@ -35,9 +35,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     description:
       "A record-driven reconstruction of enslaved people as human beings: reconnecting records to people, people to families, families to place, and those connections to the larger history of America.",
     checkoutUrl:
-      "https://svc.lulu.com/?items=13ddeb0c-1c42-4a02-9f4d-ce20520b6ad8",
-    buyButtonId: "13ddeb0c-1c42-4a02-9f4d-ce20520b6ad8",
-    buyButtonVariant: "product-showcase",
+      "https://svc.lulu.com/?items=d8b832c3-6f2e-44e3-890f-1bd0777d6731",
     provider: "lulu",
     pageCount: 251,
     availableForDirectCheckout: true,
