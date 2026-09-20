@@ -29,25 +29,49 @@ export async function POST(request: NextRequest) {
   const quantity = Number(body.quantity ?? 1);
 
   if (!product) return NextResponse.json({ error: "Unknown store product." }, { status: 404 });
-  if (!product.availableForDirectCheckout) {
-    return NextResponse.json({ error: "Direct checkout is not enabled for this edition." }, { status: 409 });
+
+  if (
+    !product.availableForDirectCheckout ||
+    !product.titleId ||
+    product.priceCents == null ||
+    !product.currency ||
+    !product.stripeProductId ||
+    !product.stripePriceId ||
+    !product.provider
+  ) {
+    return NextResponse.json(
+      { error: "Direct checkout is not enabled for this edition." },
+      { status: 409 }
+    );
   }
+
   if (!validAddress(body.address) || !body.shippingLevel) {
-    return NextResponse.json({ error: "Shipping address and shipping level are required." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Shipping address and shipping level are required." },
+      { status: 400 }
+    );
   }
+
   if (!Number.isInteger(quantity) || quantity < 1 || quantity > 20) {
-    return NextResponse.json({ error: "Quantity must be between 1 and 20." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Quantity must be between 1 and 20." },
+      { status: 400 }
+    );
   }
 
   const provider = getFulfillmentProvider(product);
   const quote = await provider.quoteShipping(product, quantity, body.address);
+
   if (!quote.ok) {
     return NextResponse.json({ code: quote.code, error: quote.message }, { status: 409 });
   }
 
   const shipping = quote.options.find((option) => option.level === body.shippingLevel);
   if (!shipping) {
-    return NextResponse.json({ error: "The selected shipping option is no longer available." }, { status: 409 });
+    return NextResponse.json(
+      { error: "The selected shipping option is no longer available." },
+      { status: 409 }
+    );
   }
 
   const orderId = crypto.randomUUID();
