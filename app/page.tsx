@@ -36,7 +36,7 @@ export default function HomePage() {
       <header className="site-header">
         <div className="shell header-inner">
           <a className="brand" href="#top">
-            <span className="brand-mark">C</span>
+            <img className="brand-logo" src="/covers/consonance-logo.svg" alt="Consonance logo" />
             <span className="brand-copy">
               <b>CONSONANCE</b>
               <small>IDEAS FOR A MORE HUMAN TOMORROW</small>
@@ -115,13 +115,18 @@ export default function HomePage() {
                   <img src={book.coverImage} alt={"Cover of " + book.name} />
                 </a>
                 <div className="book-card-copy">
-                  <h3>{book.name}</h3>
+                  <a className="book-title-link" href={"/books/" + book.slug}>
+                    <h3>{book.name}</h3>
+                  </a>
                   {book.subtitle ? <p>{book.subtitle}</p> : null}
                   <span>Eric J. Finkley</span>
                   <strong>{book.priceLabel}</strong>
-                  <a className="book-buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
-                    Buy direct
-                  </a>
+                  <div className="book-actions">
+                    <a className="book-details" href={"/books/" + book.slug}>Description + buy →</a>
+                    <a className="book-buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
+                      Buy direct
+                    </a>
+                  </div>
                 </div>
               </article>
             ))}
@@ -164,7 +169,7 @@ export default function HomePage() {
       <footer className="site-footer">
         <div className="shell footer-inner">
           <div className="brand footer-brand">
-            <span className="brand-mark">C</span>
+            <img className="brand-logo" src="/covers/consonance-logo.svg" alt="Consonance logo" />
             <span className="brand-copy">
               <b>CONSONANCE</b>
               <small>IDEAS FOR A MORE HUMAN TOMORROW</small>
