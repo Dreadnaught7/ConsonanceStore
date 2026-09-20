@@ -6,6 +6,7 @@ export type StoreProduct = {
   priceLabel: string;
   description: string;
   checkoutUrl: string;
+  coverImage: string;
   category: "history" | "method";
   titleId?: string;
   priceCents?: number;
@@ -28,6 +29,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     format: "Paperback · Direct edition",
     priceLabel: "$16.99",
     category: "method",
+    coverImage: "/covers/resonance-method.svg",
     description:
       "A practical framework for observing clearly, aligning with what is true, acting with intention, and learning from the echo of results.",
     checkoutUrl:
@@ -41,6 +43,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     format: "Paperback · Documentary history",
     priceLabel: "Buy direct",
     category: "history",
+    coverImage: "/covers/grounds-harlem.svg",
     description:
       "Harlem as place, evidence, argument, and inheritance — tracing the ground before the legend and the systems that shaped the people.",
     checkoutUrl:
@@ -54,6 +57,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     format: "Paperback · US Trade 6 × 9 · B&W · Matte",
     priceLabel: "$15.99",
     category: "history",
+    coverImage: "/covers/air-was-safe.svg",
     description:
       "A record-driven examination of what officials knew, what the public was told, and what the evidence revealed after September 11.",
     checkoutUrl:
