@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getProduct, formatMoney, STORE_PRODUCTS } from "@/lib/catalog";
-import BuyForm from "@/components/BuyForm";
+import { getProduct, STORE_PRODUCTS } from "@/lib/catalog";
 
 export function generateStaticParams() {
   return STORE_PRODUCTS.map((book) => ({ slug: book.slug }));
@@ -12,32 +11,29 @@ export default function BookPage({ params }: { params: { slug: string } }) {
   if (!book) notFound();
 
   return (
-    <main className="shell product-page">
+    <main className="product-page">
       <Link href="/" className="back-link">← Back to books</Link>
-      <div className="product-grid">
-        <div className="book-cover large" aria-hidden="true">
-          <span>CONSONANCE</span>
-          <strong>{book.name}</strong>
-        </div>
 
-        <section>
-          <p className="eyebrow">{book.format}</p>
-          <h1>{book.name}</h1>
-          {book.subtitle ? <p className="product-subtitle">{book.subtitle}</p> : null}
-          <p className="product-description">{book.description}</p>
-          {book.isbn ? <p className="metadata">ISBN {book.isbn}</p> : null}
-          <p className="product-price">{formatMoney(book.priceCents)}</p>
+      <section className="product-direct">
+        <p className="store-eyebrow">{book.format}</p>
+        <h1>{book.name}</h1>
+        {book.subtitle ? <p className="product-subtitle">{book.subtitle}</p> : null}
+        <p className="product-description">{book.description}</p>
+        <p className="product-price">{book.priceLabel}</p>
 
-          {book.availableForDirectCheckout ? (
-            <BuyForm slug={book.slug} priceCents={book.priceCents} />
-          ) : (
-            <div className="notice">
-              <strong>Direct checkout is not enabled for this edition yet.</strong>
-              <p>This listing is live in the catalog while direct fulfillment is completed.</p>
-            </div>
-          )}
-        </section>
-      </div>
+        <a
+          className="direct-buy product-buy"
+          href={book.checkoutUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Buy direct through Lulu
+        </a>
+
+        <p className="checkout-note">
+          Printing, checkout, and fulfillment are handled securely through Lulu Direct.
+        </p>
+      </section>
     </main>
   );
 }
