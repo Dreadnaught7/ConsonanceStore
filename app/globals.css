@@ -174,7 +174,7 @@ button { font: inherit; }
 .store-hero h1 {
   margin: 16px 0 20px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(4.2rem, 8vw, 8.4rem);
+  font-size: clamp(3.15rem, 6vw, 6.3rem);
   line-height: .82;
   letter-spacing: -.055em;
   font-weight: 700;
