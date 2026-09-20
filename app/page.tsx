@@ -51,7 +51,7 @@ export default function HomePage() {
             </a>
           </nav>
 
-          <a className="support-button" href="#books">Support the work</a>
+          <a className="support-button" href="/books/the-air-was-safe">Support the work</a>
         </div>
       </header>
 
@@ -96,10 +96,6 @@ export default function HomePage() {
               <span>STILL</span>
               <span>MATTER</span>
             </div>
-            <div className="harlem-plaque">
-              <strong>Harlem</strong>
-              <small>A More Human Tomorrow</small>
-            </div>
           </aside>
         </div>
       </section>
@@ -109,7 +105,7 @@ export default function HomePage() {
           <div className="featured-intro">
             <p className="eyebrow">FEATURED BOOKS</p>
             <h2>Different questions.<br />A richer conversation.</h2>
-            <a href="#books">View all books →</a>
+            <span className="catalog-label">CURRENT CATALOG</span>
           </div>
 
           <div className="book-list">
@@ -149,7 +145,7 @@ export default function HomePage() {
             Consonance Publishing exists to explore the deeper questions — and to amplify
             voices that challenge, connect, and inspire.
           </p>
-          <a href="#books">Learn more →</a>
+          <a href="https://consonanceintelligence.com/" target="_blank" rel="noreferrer">Explore Consonance →</a>
         </div>
 
         <div className="newsletter-panel">
@@ -158,10 +154,9 @@ export default function HomePage() {
           <div className="newsletter-copy">
             <p className="eyebrow">STAY IN THE LOOP</p>
             <h3>New releases, essays, and updates from Consonance.</h3>
-            <form onSubmit={(event) => event.preventDefault()}>
-              <input type="email" aria-label="Email address" placeholder="Your email address" />
-              <button type="submit">Subscribe</button>
-            </form>
+            <div className="newsletter-status">
+              <span>Newsletter signup coming soon.</span>
+            </div>
           </div>
         </div>
       </section>
