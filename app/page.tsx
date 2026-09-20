@@ -3,20 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { STORE_PRODUCTS } from "@/lib/catalog";
 
-const SIGNALS = ["OBSERVE", "TRACE", "RECORD", "CONNECT", "CONTEXT", "UNDERSTAND", "CHOOSE"];
-
 export default function HomePage() {
   const [filter, setFilter] = useState<"all" | "history" | "method">("all");
-  const [signalIndex, setSignalIndex] = useState(0);
   const progressRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const timer = window.setInterval(
-      () => setSignalIndex((current) => (current + 1) % SIGNALS.length),
-      1900
-    );
-    return () => window.clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     const onPointerMove = (event: PointerEvent) => {
@@ -48,151 +37,117 @@ export default function HomePage() {
   );
 
   return (
-    <main className="store-page" id="top">
+    <main className="store-page">
       <div className="scroll-progress" ref={progressRef} />
 
-      <header className="store-header">
-        <div className="store-shell store-nav">
-          <a className="store-brand" href="#top" aria-label="Consonance Publishing Store">
-            <span className="logo-frame">
-              <img src="/covers/consonance-logo.svg" alt="" />
-            </span>
-            <span className="brand-type">
-              <b>CONSONANCE</b>
-              <small>PUBLISHING / STORE</small>
-            </span>
+      <header className="site-header">
+        <div className="shell header-inner">
+          <a href="/" className="brand">
+            <img src="/covers/consonance-logo.svg" alt="" />
+            <span>Consonance Publishing</span>
           </a>
 
           <nav>
-            <a href="#books">BOOKS</a>
-            <a href="#about">IMPRINT</a>
-            <a href="https://consonanceintelligence.com/" target="_blank" rel="noreferrer">
-              INTELLIGENCE ↗
-            </a>
+            <a href="#books">Books</a>
+            <a href="#about">About</a>
+            <a href="https://consonanceintelligence.com/" target="_blank" rel="noreferrer">Intelligence ↗</a>
           </nav>
         </div>
       </header>
 
-      <section className="store-hero">
-        <div className="store-shell hero-grid">
-          <div className="hero-copy-block">
-            <p className="store-eyebrow">CONSONANCE PUBLISHING / DIRECT</p>
-            <h1>BOOKS WITH<br />PRESENCE.</h1>
-            <p className="hero-copy">
-              Documentary history, practical method, and evidence-driven work from
-              Eric J. Finkley. Built with weight. Sold direct.
-            </p>
-            <div className="hero-actions">
-              <a className="store-button primary" href="#books">ENTER THE SHELF</a>
-              <a className="store-button ghost" href="#about">THE IMPRINT</a>
-            </div>
-          </div>
+      <section className="hero shell">
+        <div className="hero-copy">
+          <span className="kicker">Independent publishing · direct editions</span>
+          <h1>Books built to hold up.</h1>
+          <p>
+            Documentary history, practical method, and evidence-led work from Eric J. Finkley.
+          </p>
+          <a className="text-link" href="#books">Browse current titles ↓</a>
+        </div>
 
-          <aside className="signal-panel">
-            <div className="signal-index">SIGNAL / {String(signalIndex + 1).padStart(2, "0")}</div>
-            <strong key={signalIndex}>{SIGNALS[signalIndex]}</strong>
-            <div className="signal-rule" />
-            <small>SIGNAL → TRACE → RECORD → CONTEXT → CHOICE</small>
-          </aside>
+        <div className="hero-mark" aria-hidden="true">
+          <span />
+          <span />
+          <span />
         </div>
       </section>
 
-      <section className="store-shell shelf-section" id="books">
-        <div className="section-head">
+      <section className="shell catalog" id="books">
+        <div className="catalog-topline">
           <div>
-            <p className="store-eyebrow">CURRENT SHELF</p>
-            <h2>AVAILABLE NOW</h2>
+            <span className="kicker">Current shelf</span>
+            <h2>Available now</h2>
           </div>
-          <p>
-            Direct editions from Consonance Publishing. Every title is treated as an object,
-            not an app tile.
-          </p>
+
+          <div className="filters">
+            {[
+              ["all","All"],
+              ["history","History"],
+              ["method","Method"]
+            ].map(([value,label]) => (
+              <button
+                key={value}
+                onClick={() => setFilter(value as "all" | "history" | "method")}
+                className={filter === value ? "active" : ""}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="store-filters" aria-label="Filter books">
-          {[
-            ["all", "ALL"],
-            ["history", "HISTORY"],
-            ["method", "METHOD"],
-          ].map(([value, label]) => (
-            <button
-              key={value}
-              className={filter === value ? "active" : ""}
-              onClick={() => setFilter(value as "all" | "history" | "method")}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+        <div className="book-grid">
+          {books.map((book) => (
+            <article className="book-card" key={book.slug}>
+              <a className="cover-wrap" href={"/books/" + book.slug}>
+                <img src={book.coverImage} alt={"Cover of " + book.name} />
+              </a>
 
-        <div className="store-shelf">
-          {books.map((book, index) => (
-            <article className="store-book" key={book.slug}>
-              <div className="cover-stage">
-                <div className="cover-shadow" />
-                <a href={"/books/" + book.slug} className="store-cover">
-                  <img src={book.coverImage} alt={"Cover of " + book.name} />
-                </a>
-              </div>
-
-              <div className="store-copy">
-                <p className="book-tag">
-                  {String(index + 1).padStart(2, "0")} / {book.category.toUpperCase()}
-                </p>
+              <div className="book-info">
+                <div className="book-type">{book.category}</div>
                 <h3>{book.name}</h3>
-                <p className="edition">{book.subtitle}</p>
-                <p className="book-desc">{book.description}</p>
-                <div className="book-meta">
-                  <span>ERIC J. FINKLEY</span>
-                  <span>{book.format}</span>
-                </div>
-              </div>
+                {book.subtitle ? <p className="subtitle">{book.subtitle}</p> : null}
+                <p className="description">{book.description}</p>
 
-              <div className="buy-panel">
-                <span className="buy-label">DIRECT EDITION</span>
-                <strong>{book.priceLabel}</strong>
-                <a className="direct-buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
-                  BUY DIRECT ↗
-                </a>
-                <a className="detail-link" href={"/books/" + book.slug}>
-                  VIEW EDITION →
-                </a>
+                <div className="book-bottom">
+                  <div>
+                    <strong>{book.priceLabel}</strong>
+                    <small>{book.format}</small>
+                  </div>
+
+                  <div className="actions">
+                    <a href={"/books/" + book.slug}>Details</a>
+                    <a className="buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
+                      Buy direct ↗
+                    </a>
+                  </div>
+                </div>
               </div>
             </article>
           ))}
         </div>
+      </section>
 
-        <div className="next-strip">
-          <b>NEXT /</b>
-          <span>BEFORE THE BULLET · A DREAM OBSERVED · MALCOLM X</span>
+      <section className="shell about" id="about">
+        <span className="kicker">Consonance Publishing</span>
+        <div className="about-grid">
+          <h2>Clear work.<br />Strong record.</h2>
+          <div>
+            <p>
+              Consonance Publishing is an imprint of EJFinkley Holdings Inc., built around
+              documentary rigor, original ideas, and direct ownership of the work.
+            </p>
+            <p className="quote">
+              Language should increase the reader’s ability to see, not reduce the reader’s ability to choose.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="store-shell about-section" id="about">
-        <div className="about-number">01</div>
-        <div>
-          <p className="store-eyebrow">WHY THIS IMPRINT</p>
-          <h2>CONNECTION,<br />NOT CLAIM.</h2>
-        </div>
-        <div className="about-copy">
-          <p>
-            Consonance Publishing is an imprint of EJFinkley Holdings Inc. The throughline is
-            simple: preserve evidence, widen context, respect the person, and leave the reader
-            with more ability to choose — not less.
-          </p>
-          <blockquote>
-            “Language should increase the reader’s ability to see, not reduce the reader’s
-            ability to choose.”
-          </blockquote>
-        </div>
-      </section>
-
-      <footer className="store-footer">
-        <div className="store-shell">
-          <span>© 2026 CONSONANCE PUBLISHING / EJFINKLEY HOLDINGS INC.</span>
-          <a href="https://consonanceintelligence.com/" target="_blank" rel="noreferrer">
-            CONSONANCEINTELLIGENCE.COM ↗
-          </a>
+      <footer className="site-footer">
+        <div className="shell">
+          <span>© 2026 Consonance Publishing</span>
+          <span>EJFinkley Holdings Inc.</span>
         </div>
       </footer>
     </main>
