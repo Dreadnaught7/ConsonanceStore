@@ -30,7 +30,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     format: "Paperback · 8.5 × 11 · 251 pages · Direct edition",
     priceLabel: "$29.99",
     category: "history",
-    coverImage: "/covers/who-are-we.svg",
+    coverImage: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/who-are-we-front.jpg",
     description:
       "A record-driven reconstruction of enslaved people as human beings: reconnecting records to people, people to families, families to place, and those connections to the larger history of America.",
     checkoutUrl:
@@ -73,7 +73,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     format: "Paperback · US Trade 6 × 9 · B&W · Matte",
     priceLabel: "$15.99",
     category: "history",
-    coverImage: "/covers/air-was-safe.svg",
+    coverImage: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/the-air-was-safe-front%20(1).jpg",
     description: "The Air Was Safe examines one of the most consequential questions left by the aftermath of September 11, 2001: what did government agencies know about environmental hazards in Lower Manhattan, what did they tell the public, and when?\n\nDrawing on public records, environmental data, oversight reports, archival material, and newly released municipal documents, Eric J. Finkley reconstructs the gap between official reassurance and the evidence being collected behind the scenes.\n\nThe book follows the record rather than the mythology, separating documented fact from inference and showing how public communication, institutional decision-making, and environmental risk intersected in the days, weeks, and years after the attacks.\n\nThis is not a conspiracy narrative. It is a records-based investigation into government knowledge, public assurances, accountability, and the long consequences of decisions made under extraordinary pressure. For readers of investigative journalism, public-health history, government accountability, environmental policy, and modern New York history.",
     checkoutUrl:
       "https://svc.lulu.com/?items=2fc771d6-ffc7-4421-b062-93f85aea265b",
