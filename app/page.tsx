@@ -44,7 +44,10 @@ export default function HomePage() {
         <div className="shell header-inner">
           <a href="/" className="brand">
             <img src="/covers/consonance-logo.svg" alt="" />
-            <span>Consonance Publishing</span>
+            <span>
+              <b>Consonance</b>
+              <small>Publishing</small>
+            </span>
           </a>
 
           <nav>
@@ -55,9 +58,9 @@ export default function HomePage() {
         </div>
       </header>
 
-      <section className="hero shell">
-        <div className="hero-copy">
-          <span className="kicker">Independent publishing · direct editions</span>
+      <section className="shell hero-grid">
+        <div className="hero-main glass-panel">
+          <span className="kicker">Independent publishing / direct editions</span>
           <h1>Books built to hold up.</h1>
           <p>
             Documentary history, practical method, and evidence-led work from Eric J. Finkley.
@@ -65,15 +68,20 @@ export default function HomePage() {
           <a className="text-link" href="#books">Browse current titles ↓</a>
         </div>
 
-        <div className="hero-mark" aria-hidden="true">
-          <span />
-          <span />
-          <span />
+        <div className="hero-note tactile-card">
+          <span className="micro-label">CONSONANCE METHOD</span>
+          <p>Signal → trace → record → context → choice.</p>
+        </div>
+
+        <div className="hero-texture zine-card">
+          <span>CONNECTION</span>
+          <strong>NOT CLAIM</strong>
+          <small>Evidence first. Context widened. Human choice preserved.</small>
         </div>
       </section>
 
       <section className="shell catalog" id="books">
-        <div className="catalog-topline">
+        <div className="catalog-head">
           <div>
             <span className="kicker">Current shelf</span>
             <h2>Available now</h2>
@@ -96,25 +104,24 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="book-grid">
-          {books.map((book) => (
-            <article className="book-card" key={book.slug}>
+        <div className="book-bento">
+          {books.map((book, index) => (
+            <article className={"book-card card-" + ((index % 3) + 1)} key={book.slug}>
               <a className="cover-wrap" href={"/books/" + book.slug}>
                 <img src={book.coverImage} alt={"Cover of " + book.name} />
               </a>
 
               <div className="book-info">
-                <div className="book-type">{book.category}</div>
+                <span className="book-type">{book.category}</span>
                 <h3>{book.name}</h3>
                 {book.subtitle ? <p className="subtitle">{book.subtitle}</p> : null}
                 <p className="description">{book.description}</p>
 
-                <div className="book-bottom">
+                <div className="book-footer">
                   <div>
                     <strong>{book.priceLabel}</strong>
                     <small>{book.format}</small>
                   </div>
-
                   <div className="actions">
                     <a href={"/books/" + book.slug}>Details</a>
                     <a className="buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
@@ -128,20 +135,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="shell about" id="about">
-        <span className="kicker">Consonance Publishing</span>
-        <div className="about-grid">
-          <h2>Clear work.<br />Strong record.</h2>
-          <div>
-            <p>
-              Consonance Publishing is an imprint of EJFinkley Holdings Inc., built around
-              documentary rigor, original ideas, and direct ownership of the work.
-            </p>
-            <p className="quote">
-              Language should increase the reader’s ability to see, not reduce the reader’s ability to choose.
-            </p>
-          </div>
+      <section className="shell about-grid" id="about">
+        <div className="about-copy glass-panel">
+          <span className="kicker">Consonance Publishing</span>
+          <h2>Clear work. Strong record.</h2>
+          <p>
+            Consonance Publishing is an imprint of EJFinkley Holdings Inc., built around
+            documentary rigor, original ideas, direct ownership, and long-term preservation.
+          </p>
         </div>
+
+        <blockquote className="quote-card">
+          “Language should increase the reader’s ability to see, not reduce the reader’s ability to choose.”
+        </blockquote>
       </section>
 
       <footer className="site-footer">
