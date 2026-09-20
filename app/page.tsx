@@ -1,40 +1,54 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { STORE_PRODUCTS } from "@/lib/catalog";
+import { useEffect, useRef } from "react";
+
+const books = [
+  {
+    title: "The Resonance Method",
+    subtitle: "Second Edition",
+    price: "$16.99",
+    className: "cover-resonance",
+    checkout: "https://svc.lulu.com/?items=c36f44ae-dc16-451e-86ad-99929d9c2186",
+  },
+  {
+    title: "GROUNDS: Harlem",
+    subtitle: "A Place. A People. A Longer Story.",
+    price: "Buy direct",
+    className: "cover-harlem",
+    checkout: "https://svc.lulu.com/?items=2e105102-6127-43b3-a019-9d0d2dbf9bf1",
+  },
+  {
+    title: "The Air Was Safe",
+    subtitle: "September 11 · Records · Public Assurance",
+    price: "$15.99",
+    className: "cover-air",
+    checkout: "https://svc.lulu.com/?items=2fc771d6-ffc7-4421-b062-93f85aea265b",
+  },
+];
 
 export default function HomePage() {
-  const [filter, setFilter] = useState<"all" | "history" | "method">("all");
   const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onPointerMove = (event: PointerEvent) => {
+    const move = (event: PointerEvent) => {
       document.documentElement.style.setProperty("--mx", event.clientX + "px");
       document.documentElement.style.setProperty("--my", event.clientY + "px");
     };
-
-    const onScroll = () => {
+    const scroll = () => {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       if (progressRef.current) {
         progressRef.current.style.width =
           (total > 0 ? (window.scrollY / total) * 100 : 0) + "%";
       }
     };
-
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
+    window.addEventListener("pointermove", move, { passive: true });
+    window.addEventListener("scroll", scroll, { passive: true });
+    scroll();
     return () => {
-      window.removeEventListener("pointermove", onPointerMove);
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("scroll", scroll);
     };
   }, []);
-
-  const books = useMemo(
-    () => filter === "all" ? STORE_PRODUCTS : STORE_PRODUCTS.filter((book) => book.category === filter),
-    [filter]
-  );
 
   return (
     <main className="store-page">
@@ -42,92 +56,72 @@ export default function HomePage() {
 
       <header className="site-header">
         <div className="shell header-inner">
-          <a href="/" className="brand">
-            <img src="/covers/consonance-logo.svg" alt="" />
-            <span>
-              <b>Consonance</b>
-              <small>Publishing</small>
+          <a className="brand" href="#top">
+            <span className="brand-mark">C</span>
+            <span className="brand-copy">
+              <b>CONSONANCE</b>
+              <small>PUBLISHING</small>
             </span>
           </a>
-
           <nav>
             <a href="#books">Books</a>
             <a href="#about">About</a>
-            <a href="https://consonanceintelligence.com/" target="_blank" rel="noreferrer">Intelligence ↗</a>
+            <a href="https://consonanceintelligence.com/" target="_blank" rel="noreferrer">
+              Intelligence ↗
+            </a>
           </nav>
         </div>
       </header>
 
-      <section className="shell hero-grid">
-        <div className="hero-main glass-panel">
-          <span className="kicker">Independent publishing / direct editions</span>
-          <h1>Books built to hold up.</h1>
-          <p>
-            Documentary history, practical method, and evidence-led work from Eric J. Finkley.
-          </p>
-          <a className="text-link" href="#books">Browse current titles ↓</a>
-        </div>
+      <section className="hero" id="top">
+        <div className="hero-image" />
+        <div className="hero-overlay" />
+        <div className="shell hero-content">
+          <div className="hero-copy">
+            <p className="eyebrow">IDEAS BELONG HERE</p>
+            <h1>Consonance<br />Publishing</h1>
+            <p className="hero-deck">
+              Books with weight. Work with memory. Stories and research rooted in New York and built to travel.
+            </p>
+            <div className="hero-actions">
+              <a className="button primary" href="#books">Explore books →</a>
+              <a className="button secondary" href="#about">Our mission</a>
+            </div>
+          </div>
 
-        <div className="hero-note tactile-card">
-          <span className="micro-label">CONSONANCE METHOD</span>
-          <p>Signal → trace → record → context → choice.</p>
-        </div>
-
-        <div className="hero-texture zine-card">
-          <span>CONNECTION</span>
-          <strong>NOT CLAIM</strong>
-          <small>Evidence first. Context widened. Human choice preserved.</small>
+          <aside className="hero-side">
+            <span>PEOPLE</span>
+            <span>PLACES</span>
+            <span>PERSPECTIVES</span>
+            <span>PROGRESS</span>
+          </aside>
         </div>
       </section>
 
-      <section className="shell catalog" id="books">
-        <div className="catalog-head">
+      <section className="shell featured" id="books">
+        <div className="section-title-row">
           <div>
-            <span className="kicker">Current shelf</span>
-            <h2>Available now</h2>
+            <p className="eyebrow">FEATURED BOOKS</p>
+            <h2>Current shelf</h2>
           </div>
-
-          <div className="filters">
-            {[
-              ["all","All"],
-              ["history","History"],
-              ["method","Method"]
-            ].map(([value,label]) => (
-              <button
-                key={value}
-                onClick={() => setFilter(value as "all" | "history" | "method")}
-                className={filter === value ? "active" : ""}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
+          <span className="rule" />
         </div>
 
-        <div className="book-bento">
-          {books.map((book, index) => (
-            <article className={"book-card card-" + ((index % 3) + 1)} key={book.slug}>
-              <a className="cover-wrap" href={"/books/" + book.slug}>
-                <img src={book.coverImage} alt={"Cover of " + book.name} />
-              </a>
-
-              <div className="book-info">
-                <span className="book-type">{book.category}</span>
-                <h3>{book.name}</h3>
-                {book.subtitle ? <p className="subtitle">{book.subtitle}</p> : null}
-                <p className="description">{book.description}</p>
-
-                <div className="book-footer">
-                  <div>
-                    <strong>{book.priceLabel}</strong>
-                    <small>{book.format}</small>
-                  </div>
-                  <div className="actions">
-                    <a href={"/books/" + book.slug}>Details</a>
-                    <a className="buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
-                      Buy direct ↗
-                    </a>
-                  </div>
+        <div className="book-grid">
+          {books.map((book) => (
+            <article className="book-card" key={book.title}>
+              <div className={"book-cover " + book.className}>
+                <div className="cover-noise" />
+                <div className="cover-title">{book.title}</div>
+                <div className="cover-sub">{book.subtitle}</div>
+                <div className="cover-author">ERIC J. FINKLEY</div>
+              </div>
+              <div className="book-copy">
+                <h3>{book.title}</h3>
+                <p>{book.subtitle}</p>
+                <div className="book-buy-row">
+                  <strong>{book.price}</strong>
+                  <a href={book.checkout} target="_blank" rel="noreferrer">Buy direct ↗</a>
                 </div>
               </div>
             </article>
@@ -135,25 +129,47 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="shell about-grid" id="about">
-        <div className="about-copy glass-panel">
-          <span className="kicker">Consonance Publishing</span>
-          <h2>Clear work. Strong record.</h2>
-          <p>
-            Consonance Publishing is an imprint of EJFinkley Holdings Inc., built around
-            documentary rigor, original ideas, direct ownership, and long-term preservation.
-          </p>
-        </div>
+      <section className="mission" id="about">
+        <div className="mission-city" />
+        <div className="mission-overlay" />
+        <div className="shell mission-grid">
+          <div className="mission-copy">
+            <p className="eyebrow">OUR MISSION</p>
+            <h2>Books that move people forward.</h2>
+            <p>
+              Consonance Publishing exists to preserve evidence, widen context, and create work that leaves the reader with more room to think — not less.
+            </p>
+          </div>
 
-        <blockquote className="quote-card">
-          “Language should increase the reader’s ability to see, not reduce the reader’s ability to choose.”
-        </blockquote>
+          <blockquote>
+            “Language should increase the reader’s ability to see, not reduce the reader’s ability to choose.”
+          </blockquote>
+        </div>
+      </section>
+
+      <section className="city-strip">
+        <div className="city-tile tile-one">
+          <span>READ</span>
+          <span>THINK</span>
+          <span>BELONG</span>
+          <span>BUILD</span>
+        </div>
+        <div className="city-tile tile-two" />
+        <div className="city-tile tile-three">
+          <span>A BRIGHTER TOMORROW READS HERE.</span>
+        </div>
       </section>
 
       <footer className="site-footer">
-        <div className="shell">
-          <span>© 2026 Consonance Publishing</span>
-          <span>EJFinkley Holdings Inc.</span>
+        <div className="shell footer-inner">
+          <div className="brand footer-brand">
+            <span className="brand-mark">C</span>
+            <span className="brand-copy">
+              <b>CONSONANCE</b>
+              <small>PUBLISHING</small>
+            </span>
+          </div>
+          <span>© 2026 EJFinkley Holdings Inc.</span>
         </div>
       </footer>
     </main>
