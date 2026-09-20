@@ -35,14 +35,26 @@ export default function BookPage({ params }: { params: { slug: string } }) {
             <strong>{book.priceLabel}</strong>
           </div>
 
-          <a
-            className="product-buy"
-            href={book.checkoutUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Buy direct ↗
-          </a>
+          {book.buyButtonId ? (
+            <div className={"lulu-native-button product-native " + (book.buyButtonVariant === "product-showcase" ? "showcase" : "compact")}>
+              {React.createElement("lulu-buy-button", {
+                "buy-button-id": book.buyButtonId,
+                variant: book.buyButtonVariant || "button-only",
+              })}
+              <a className="native-fallback-link" href={book.checkoutUrl} target="_blank" rel="noreferrer">
+                Open direct checkout ↗
+              </a>
+            </div>
+          ) : (
+            <a
+              className="product-buy"
+              href={book.checkoutUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Buy direct ↗
+            </a>
+          )}
         </div>
       </section>
     </main>
