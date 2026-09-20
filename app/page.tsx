@@ -115,9 +115,12 @@ export default function HomePage() {
           <div className="book-list">
             {featured.map((book) => (
               <article className="book-card" key={book.slug}>
-                <a className="book-cover" href={"/books/" + book.slug}>
-                  <img src={book.coverImage} alt={"Cover of " + book.name} />
-                </a>
+                <a
+                  className="book-cover"
+                  href={"/books/" + book.slug}
+                  aria-label={"View " + book.name}
+                  style={{ backgroundImage: `url("${book.coverImage}")` }}
+                />
                 <div className="book-card-copy">
                   <a className="book-title-link" href={"/books/" + book.slug}>
                     <h3>{book.name}</h3>
