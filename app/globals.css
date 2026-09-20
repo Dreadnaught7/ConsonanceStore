@@ -1,0 +1,391 @@
+:root {
+  --ink: #111111;
+  --paper: #f7f4ed;
+  --gold: #d39b2a;
+  --line: #d8d2c5;
+  --muted: #6e6a63;
+  --white: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--paper); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-top: 3px solid var(--gold);
+  border-bottom: 1px solid var(--line);
+  background: rgba(247,244,237,.96);
+  backdrop-filter: blur(10px);
+}
+
+.header-inner {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.brand-sub {
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--muted);
+}
+
+.site-header nav a {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hero {
+  padding: 96px 0 72px;
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(211,155,42,.18), transparent 24%),
+    linear-gradient(180deg, #fffdf7, var(--paper));
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 12px;
+  letter-spacing: .18em;
+  font-weight: 800;
+  color: #8b671c;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 850px;
+  font-size: clamp(48px, 7vw, 92px);
+  line-height: .98;
+  letter-spacing: -.035em;
+}
+
+.hero-copy {
+  max-width: 700px;
+  margin: 28px 0 0;
+  font-size: 20px;
+  line-height: 1.55;
+  color: #3e3b36;
+}
+
+.catalog-section {
+  padding: 72px 0 96px;
+}
+
+.section-heading {
+  margin-bottom: 28px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 38px;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.book-card {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 26px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.6);
+}
+
+.book-cover {
+  aspect-ratio: 2 / 3;
+  padding: 20px;
+  background:
+    linear-gradient(135deg, rgba(211,155,42,.2), transparent 40%),
+    #151515;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 16px 35px rgba(0,0,0,.12);
+}
+
+.book-cover span {
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: #e7be67;
+}
+
+.book-cover strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  line-height: 1.05;
+}
+
+.book-cover.large {
+  width: min(390px, 100%);
+  justify-self: center;
+  padding: 34px;
+}
+
+.book-cover.large strong { font-size: 38px; }
+
+.book-card-copy {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-card h3 {
+  margin: 4px 0 6px;
+  font-size: 28px;
+  line-height: 1.08;
+}
+
+.format,
+.metadata {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.subtitle {
+  margin: 0 0 16px;
+  font-style: italic;
+  color: #4c4943;
+}
+
+.book-card-copy > p:not(.format):not(.subtitle) {
+  line-height: 1.55;
+}
+
+.book-card-bottom {
+  margin-top: auto;
+  padding-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.price,
+.product-price {
+  font-size: 24px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.button:hover { background: var(--ink); color: white; }
+.button.primary { background: var(--ink); color: white; }
+.button.primary:hover { opacity: .9; }
+.button:disabled { opacity: .5; cursor: wait; }
+
+.product-page {
+  padding: 42px 0 96px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 34px;
+  color: var(--muted);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 440px) minmax(0, 1fr);
+  gap: 72px;
+  align-items: start;
+}
+
+.product-grid h1 {
+  margin: 0 0 12px;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1;
+}
+
+.product-subtitle {
+  margin: 0 0 22px;
+  font-size: 21px;
+  font-style: italic;
+  color: #4b4741;
+}
+
+.product-description {
+  max-width: 720px;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.product-price {
+  margin: 24px 0;
+  font-weight: 800;
+}
+
+.notice {
+  margin-top: 28px;
+  padding: 20px;
+  border-left: 4px solid var(--gold);
+  background: #fffaf0;
+}
+
+.buy-form {
+  margin-top: 34px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.7);
+}
+
+.form-heading h2 {
+  margin: 0 0 4px;
+  font-size: 30px;
+}
+
+.form-heading p {
+  margin: 0 0 22px;
+  color: var(--muted);
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.field-grid label {
+  display: grid;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+
+.field-grid input {
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 10px;
+  border: 1px solid #aaa49a;
+  background: white;
+  font: inherit;
+}
+
+.shipping-options {
+  margin-top: 24px;
+  display: grid;
+  gap: 10px;
+}
+
+.shipping-options h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+
+.shipping-option {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: white;
+}
+
+.form-error {
+  margin-top: 16px;
+  color: #8a1f11;
+  font-weight: 700;
+}
+
+.status-page {
+  min-height: 60vh;
+  padding: 100px 0;
+}
+
+.status-page h1 {
+  margin: 0 0 18px;
+  font-size: 64px;
+}
+
+.status-page p {
+  max-width: 680px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.status-page .button {
+  margin-top: 20px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 26px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 850px) {
+  .book-grid,
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-card {
+    grid-template-columns: 135px 1fr;
+  }
+
+  .product-grid {
+    gap: 42px;
+  }
+}
+
+@media (max-width: 580px) {
+  .hero { padding: 72px 0 54px; }
+  .book-card { grid-template-columns: 1fr; }
+  .book-cover { width: 170px; }
+  .field-grid { grid-template-columns: 1fr; }
+  .book-card-bottom { align-items: flex-start; flex-direction: column; }
+}
