@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 1100" role="img" aria-labelledby="title desc">
+  <title id="title">WHO ARE WE? Book One: The Record</title>
+  <desc id="desc">Store cover for WHO ARE WE? Slavery, Its Descendants, and the Making of America by Eric J. Finkley.</desc>
+  <rect width="850" height="1100" fill="#0b0c0f"/>
+  <g opacity=".18" fill="none" stroke="#d8a64e" stroke-width="2">
+    <circle cx="425" cy="460" r="285"/><circle cx="425" cy="460" r="225"/><circle cx="425" cy="460" r="165"/>
+  </g>
+  <path d="M425 175 L425 745" stroke="#244d79" stroke-width="3" opacity=".65"/>
+  <rect x="76" y="78" width="698" height="944" fill="none" stroke="#d8a64e" stroke-width="2" opacity=".45"/>
+  <text x="92" y="150" fill="#d8a64e" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="5">WHO ARE WE?</text>
+  <text x="92" y="210" fill="#f2eee5" font-family="Georgia, 'Times New Roman', serif" font-size="46" font-weight="700">SLAVERY, ITS</text>
+  <text x="92" y="264" fill="#f2eee5" font-family="Georgia, 'Times New Roman', serif" font-size="46" font-weight="700">DESCENDANTS,</text>
+  <text x="92" y="318" fill="#f2eee5" font-family="Georgia, 'Times New Roman', serif" font-size="46" font-weight="700">AND THE MAKING</text>
+  <text x="92" y="372" fill="#f2eee5" font-family="Georgia, 'Times New Roman', serif" font-size="46" font-weight="700">OF AMERICA</text>
+  <line x1="92" y1="414" x2="758" y2="414" stroke="#d8a64e" stroke-width="2"/>
+  <text x="92" y="820" fill="#9ca4ad" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="4">BOOK ONE</text>
+  <text x="92" y="880" fill="#f2eee5" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="700">THE RECORD</text>
+  <text x="92" y="955" fill="#d8a64e" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">ERIC J. FINKLEY</text>
+  <text x="92" y="997" fill="#7f8994" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="3">CONSONANCE PUBLISHING</text>
+</svg>
