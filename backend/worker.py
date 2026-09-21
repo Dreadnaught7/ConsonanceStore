@@ -8,6 +8,14 @@ import requests
 from common import db_get, db_insert, db_patch, safe_json, sha256_bytes, utcnow
 
 POLL_SECONDS = max(1, int(os.environ.get("WORKER_POLL_SECONDS", "5")))
+ALLOWED_VISIBILITY = {"public", "descendant", "institutional", "internal", "restricted"}
+ALLOWED_AUTH = {
+    "origin_unknown",
+    "contributor_supplied",
+    "institutionally_sourced",
+    "independently_corroborated",
+    "authenticated_original",
+}
 
 
 def claim_next_job() -> dict[str, Any] | None:
@@ -27,6 +35,11 @@ def claim_next_job() -> dict[str, Any] | None:
     return claimed[0] if claimed else None
 
 
+def _choice(value: Any, allowed: set[str], default: str) -> str:
+    candidate = str(value or default).strip().lower()
+    return candidate if candidate in allowed else default
+
+
 def ingest_source(payload: dict[str, Any]) -> dict[str, Any]:
     source_url = str(payload.get("url", "")).strip()
     if not source_url:
@@ -39,32 +52,91 @@ def ingest_source(payload: dict[str, Any]) -> dict[str, Any]:
     response = requests.get(
         source_url,
         timeout=60,
-        headers={"User-Agent": "ConsonanceEvidenceEngine/0.1"},
+        headers={"User-Agent": "ConsonanceEvidenceEngine/0.2"},
     )
     response.raise_for_status()
+
     raw = response.content
     digest = sha256_bytes(raw)
+    retrieved_at = utcnow()
+    title = str(payload.get("title") or source_url).strip()
+    source_type = str(payload.get("source_type") or "web").strip()
+    visibility = _choice(payload.get("visibility"), ALLOWED_VISIBILITY, "internal")
+    authentication_state = _choice(
+        payload.get("authentication_state"),
+        ALLOWED_AUTH,
+        "origin_unknown",
+    )
 
-    record = {
-        "source_url": source_url,
-        "source_type": payload.get("source_type", "web"),
-        "title": payload.get("title"),
-        "sha256": digest,
-        "content_type": response.headers.get("content-type"),
-        "byte_length": len(raw),
-        "retrieved_at": utcnow(),
-        "metadata": {
-            "http_status": response.status_code,
-            "requested_by": payload.get("requested_by"),
-            "tags": payload.get("tags", []),
+    matches = db_get("obs_sources", f"raw_hash=eq.{digest}&select=*")
+    existing = next(
+        (row for row in matches if row.get("source_url") == source_url),
+        None,
+    )
+
+    if existing:
+        saved = existing
+        duplicate = True
+    else:
+        rows = db_insert(
+            "obs_sources",
+            {
+                "source_type": source_type,
+                "title": title,
+                "citation": payload.get("citation"),
+                "source_url": source_url,
+                "repository": payload.get("repository"),
+                "record_identifier": payload.get("record_identifier"),
+                "authentication_state": authentication_state,
+                "source_date": payload.get("source_date"),
+                "retrieved_at": retrieved_at,
+                "raw_hash": digest,
+                "metadata": {
+                    "http_status": response.status_code,
+                    "content_type": response.headers.get("content-type"),
+                    "byte_length": len(raw),
+                    "requested_by": payload.get("requested_by"),
+                    "tags": payload.get("tags", []),
+                    "ingest_engine": "consonance-render/0.2",
+                },
+                "visibility": visibility,
+            },
+        )
+        saved = rows[0] if isinstance(rows, list) and rows else rows
+        duplicate = False
+
+    provenance_rows = db_insert(
+        "obs_provenance_events",
+        {
+            "object_type": "obs_source",
+            "object_id": saved["id"],
+            "event_type": "source_reverified" if duplicate else "source_ingested",
+            "actor": payload.get("requested_by") or "consonance-render-worker",
+            "details": {
+                "source_url": source_url,
+                "sha256": digest,
+                "byte_length": len(raw),
+                "content_type": response.headers.get("content-type"),
+                "http_status": response.status_code,
+                "duplicate": duplicate,
+                "retrieved_at": retrieved_at,
+            },
         },
-    }
-    rows = db_insert("evidence_sources", record)
-    saved = rows[0] if isinstance(rows, list) and rows else rows
+    )
+    provenance = (
+        provenance_rows[0]
+        if isinstance(provenance_rows, list) and provenance_rows
+        else provenance_rows
+    )
+
     return {
-        "evidence_source_id": saved.get("id") if isinstance(saved, dict) else None,
+        "obs_source_id": saved.get("id"),
+        "provenance_event_id": provenance.get("id") if isinstance(provenance, dict) else None,
         "sha256": digest,
         "byte_length": len(raw),
+        "duplicate": duplicate,
+        "visibility": visibility,
+        "authentication_state": authentication_state,
     }
 
 
