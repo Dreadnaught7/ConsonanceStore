@@ -2,13 +2,14 @@ import React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProduct, STORE_PRODUCTS } from "@/lib/catalog";
+import { MALCOLM_PRODUCT } from "@/lib/malcolm";
 
 export function generateStaticParams() {
-  return STORE_PRODUCTS.map((book) => ({ slug: book.slug }));
+  return [...STORE_PRODUCTS, MALCOLM_PRODUCT].map((book) => ({ slug: book.slug }));
 }
 
 export default function BookPage({ params }: { params: { slug: string } }) {
-  const book = getProduct(params.slug);
+  const book = params.slug === MALCOLM_PRODUCT.slug ? MALCOLM_PRODUCT : getProduct(params.slug);
   if (!book) notFound();
 
   return (
