@@ -1,7 +1,7 @@
 import os
 import time
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import quote, urlparse
 
 import requests
 
@@ -68,14 +68,36 @@ def ingest_source(payload: dict[str, Any]) -> dict[str, Any]:
         "origin_unknown",
     )
 
-    matches = db_get("obs_sources", f"raw_hash=eq.{digest}&select=*")
-    existing = next(
-        (row for row in matches if row.get("source_url") == source_url),
-        None,
+    # URL is the stable intake identity. A manually registered source may not
+    # have a content hash yet; the Render worker re-verifies and enriches it.
+    matches = db_get(
+        "obs_sources",
+        f"source_url=eq.{quote(source_url, safe='')}&select=*",
     )
+    existing = matches[0] if matches else None
 
     if existing:
-        saved = existing
+        metadata = dict(existing.get("metadata") or {})
+        metadata.update(
+            {
+                "latest_http_status": response.status_code,
+                "latest_content_type": response.headers.get("content-type"),
+                "latest_byte_length": len(raw),
+                "latest_retrieved_at": retrieved_at,
+                "hash_pending_render": False,
+                "last_ingest_engine": "consonance-render/0.2",
+            }
+        )
+        patched = db_patch(
+            "obs_sources",
+            f"id=eq.{existing['id']}",
+            {
+                "raw_hash": digest,
+                "retrieved_at": retrieved_at,
+                "metadata": metadata,
+            },
+        )
+        saved = patched[0] if patched else existing
         duplicate = True
     else:
         rows = db_insert(
