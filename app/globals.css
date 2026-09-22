@@ -691,11 +691,19 @@ button, input { font: inherit; }
 }
 
 .product-description {
-  max-width: 700px;
+  max-width: 760px;
   margin: 26px 0 0;
   color: #b9c1c9;
   font-size: .92rem;
   line-height: 1.72;
+}
+
+.product-description p {
+  margin: 0 0 16px;
+}
+
+.product-description p:last-child {
+  margin-bottom: 0;
 }
 
 .product-meta-row {
