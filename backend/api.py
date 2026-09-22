@@ -9,7 +9,7 @@ from worker import ingest_source
 
 app = FastAPI(
     title="Consonance Engine API",
-    version="0.2.0",
+    version="0.5.0",
     description="Backend gateway for Rowan, WHO WE ARE, and Observatory processing.",
 )
 
@@ -34,6 +34,12 @@ class IngestRequest(BaseModel):
     visibility: str = "internal"
     tags: list[str] = Field(default_factory=list)
 
+    # Optional explicit Observatory routing.
+    investigation_id: str | None = None
+    thread_slug: str | None = None
+    investigation_title: str | None = None
+    investigation_role: str = "supporting"
+
 
 def require_key(x_consonance_key: str | None) -> None:
     if not API_KEY:
@@ -44,7 +50,7 @@ def require_key(x_consonance_key: str | None) -> None:
 
 @app.get("/health")
 def health() -> dict[str, str]:
-    return {"status": "ok", "service": "consonance-api", "version": "0.2.0"}
+    return {"status": "ok", "service": "consonance-api", "version": "0.5.0"}
 
 
 @app.post("/ingest")
