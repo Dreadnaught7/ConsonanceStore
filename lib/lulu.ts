@@ -34,9 +34,13 @@ export const luluProvider: FulfillmentProvider = {
     }
 
     try {
+      const token = await luluToken();
       const response = await fetch(`${baseUrl()}/shipping-options/`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           currency: "USD",
           line_items: [
