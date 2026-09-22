@@ -95,8 +95,9 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     titleId: "CP-BK-RM2-001",
     pageCount: 128,
     podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
+    interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/The_Resonance_Method_Second_Edition_PRINT_INTERIOR_6x9_128pp.pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/The_Resonance_Method_Second_Edition_LULU_COVER_6x9_128pp.pdf",
-    availableForDirectCheckout: false,
+    availableForDirectCheckout: true,
   },
   {
     slug: "grounds-harlem",
