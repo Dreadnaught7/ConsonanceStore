@@ -1,3 +1,4 @@
+import type { StoreProduct } from "@/lib/catalog";
 import type { FulfillmentProvider, ShippingAddress, ShippingOption } from "@/lib/types";
 
 const DEFAULT_BASE_URL = "https://api.lulu.com";
@@ -105,3 +106,103 @@ export const luluProvider: FulfillmentProvider = {
     }
   },
 };
+
+
+async function luluToken() {
+  const key = process.env.LULU_CLIENT_KEY;
+  const secret = process.env.LULU_CLIENT_SECRET;
+  if (!key || !secret) throw new Error("Lulu API credentials are not configured.");
+
+  const credentials = Buffer.from(`${key}:${secret}`).toString("base64");
+  const response = await fetch(
+    `${baseUrl()}/auth/realms/glasstree/protocol/openid-connect/token`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${credentials}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "grant_type=client_credentials",
+      cache: "no-store",
+    }
+  );
+
+  const data = (await response.json().catch(() => ({}))) as {
+    access_token?: string;
+    error_description?: string;
+  };
+
+  if (!response.ok || !data.access_token) {
+    throw new Error(data.error_description || `Lulu authentication failed (${response.status}).`);
+  }
+
+  return data.access_token;
+}
+
+export async function submitLuluPrintJob(args: {
+  product: StoreProduct;
+  quantity: number;
+  address: ShippingAddress;
+  shippingLevel: string;
+  externalId: string;
+}) {
+  const { product, quantity, address, shippingLevel, externalId } = args;
+
+  if (!product.podPackageId || !product.interiorUrl || !product.coverUrl) {
+    throw new Error("This edition is missing Lulu production files or package configuration.");
+  }
+
+  const token = await luluToken();
+  const contactEmail = process.env.LULU_CONTACT_EMAIL || address.email;
+
+  const body = {
+    contact_email: contactEmail,
+    external_id: externalId,
+    line_items: [
+      {
+        external_id: `${externalId}:1`,
+        title: product.name,
+        quantity,
+        printable_normalization: {
+          pod_package_id: product.podPackageId,
+          interior: { source_url: product.interiorUrl },
+          cover: { source_url: product.coverUrl },
+        },
+      },
+    ],
+    shipping_address: {
+      name: address.name,
+      street1: address.street1,
+      ...(address.street2 ? { street2: address.street2 } : {}),
+      city: address.city,
+      state_code: address.state || "",
+      postcode: address.postcode,
+      country_code: address.country.toUpperCase(),
+      phone_number: address.phone,
+    },
+    shipping_level: shippingLevel,
+  };
+
+  const response = await fetch(`${baseUrl()}/print-jobs/`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+    cache: "no-store",
+  });
+
+  const data = (await response.json().catch(() => ({}))) as {
+    id?: string | number;
+    status?: { name?: string; message?: string };
+    detail?: string;
+  };
+
+  if (!response.ok || data.id == null) {
+    const detail = data.detail || data.status?.message || JSON.stringify(data).slice(0, 500);
+    throw new Error(`Lulu print job failed (${response.status}): ${detail}`);
+  }
+
+  return data;
+}
