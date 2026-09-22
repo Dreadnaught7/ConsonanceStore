@@ -29,7 +29,11 @@ export default function BookPage({ params }: { params: { slug: string } }) {
           <span className="product-kicker">{book.format}</span>
           <h1>{book.name}</h1>
           {book.subtitle ? <p className="product-subtitle">{book.subtitle}</p> : null}
-          <p className="product-description">{book.description}</p>
+          <div className="product-description">
+            {book.description.split(/\n\n+/).map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
 
           <div className="product-meta-row">
             <span>Eric J. Finkley</span>
