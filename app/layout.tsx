@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: "Consonance Publishing — Store",
   description: "Direct editions from Consonance Publishing by Eric J. Finkley.",
   authors: [{ name: "EJFinkley Holdings Inc." }],
+  icons: {
+    icon: [{ url: "/consonance-favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/consonance-favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
