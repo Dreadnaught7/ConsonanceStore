@@ -78,9 +78,9 @@ export default function HomePage() {
 
           <div className="hero-copy">
             <h1>
-              <span className="gold">NEW YORK</span>
-              <span className="gold">IDEAS TRAVEL</span>
-              <span>FURTHER HERE.</span>
+              <span className="gold">INTELLIGENCE</span>
+              <span className="gold">TRAVELS</span>
+              <span>FARTHER HERE.</span>
             </h1>
             <p>
               Independent books for curious minds — exploring history, technology, culture,
