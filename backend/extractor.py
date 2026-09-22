@@ -61,7 +61,6 @@ def _call_openai(source: dict[str, Any], source_text: str) -> dict[str, Any]:
         "properties": {
             "claims": {
                 "type": "array",
-                "maxItems": 12,
                 "items": {
                     "type": "object",
                     "additionalProperties": False,
@@ -158,7 +157,11 @@ def _call_openai(source: dict[str, Any], source_text: str) -> dict[str, Any]:
         json=payload,
         timeout=150,
     )
-    response.raise_for_status()
+    if response.status_code >= 400:
+        body = response.text[:4000]
+        raise RuntimeError(
+            f"OpenAI API error {response.status_code}: {body}"
+        )
     response_json = response.json()
     return json.loads(_extract_json_text(response_json))
 
