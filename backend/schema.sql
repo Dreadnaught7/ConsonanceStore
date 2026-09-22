@@ -1,6 +1,5 @@
--- Consonance Render Engine v0.2
--- Queue only. Evidence/provenance writes use the existing Observatory tables:
--- public.obs_sources and public.obs_provenance_events.
+-- Consonance Render Engine v0.3
+-- Free-phase storage: queue + evidence intake.
 
 create extension if not exists pgcrypto;
 
@@ -21,7 +20,23 @@ create table if not exists public.consonance_jobs (
 create index if not exists consonance_jobs_status_created_idx
   on public.consonance_jobs (status, created_at);
 
-alter table public.consonance_jobs enable row level security;
+create table if not exists public.evidence_sources (
+  id uuid primary key default gen_random_uuid(),
+  source_url text not null,
+  source_type text not null default 'web',
+  title text,
+  sha256 text not null,
+  content_type text,
+  byte_length bigint,
+  retrieved_at timestamptz not null default now(),
+  metadata jsonb not null default '{}'::jsonb
+);
 
--- No public RLS policy is created intentionally.
--- Render services use the Supabase service-role key.
+create unique index if not exists evidence_sources_url_hash_idx
+  on public.evidence_sources (source_url, sha256);
+
+alter table public.consonance_jobs enable row level security;
+alter table public.evidence_sources enable row level security;
+
+-- No public RLS policies are created intentionally.
+-- Render uses the Supabase service-role key.
