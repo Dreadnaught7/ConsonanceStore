@@ -1,3 +1,4 @@
+// Deployment refresh: full book descriptions
 "use client";
 
 import React, { useEffect, useRef } from "react";
