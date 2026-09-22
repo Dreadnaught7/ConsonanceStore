@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyStripeWebhook } from "@/lib/stripe";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
+import { getStoreProduct } from "@/lib/store-products";
+import { submitLuluPrintJob } from "@/lib/lulu";
+import type { ShippingAddress } from "@/lib/types";
 
 export const runtime = "nodejs";
 
@@ -67,6 +70,73 @@ export async function POST(request: NextRequest) {
     if (error) {
       console.error("[store webhook paid update]", error);
       return NextResponse.json({ error: "Order update failed." }, { status: 500 });
+    }
+
+    if (process.env.LULU_AUTO_FULFILLMENT_ENABLED === "true") {
+      const { data: order, error: orderError } = await supabase
+        .from("commerce_orders")
+        .select("id, product_slug, provider, provider_order_id, status, shipping_address, shipping_level, quantity")
+        .eq("id", orderId)
+        .maybeSingle();
+
+      if (orderError || !order) {
+        console.error("[store fulfillment order read]", orderError);
+        return NextResponse.json({ error: "Paid order could not be loaded." }, { status: 500 });
+      }
+
+      if (order.provider === "lulu" && !order.provider_order_id) {
+        const product = getStoreProduct(order.product_slug);
+
+        if (!product) {
+          await supabase
+            .from("commerce_orders")
+            .update({
+              status: "FAILED",
+              failure_reason: "Store product configuration not found after payment.",
+              updated_at: new Date().toISOString(),
+            })
+            .eq("id", orderId);
+          return NextResponse.json({ error: "Fulfillment product configuration missing." }, { status: 500 });
+        }
+
+        try {
+          const printJob = await submitLuluPrintJob({
+            product,
+            quantity: order.quantity,
+            address: order.shipping_address as ShippingAddress,
+            shippingLevel: order.shipping_level,
+            externalId: order.id,
+          });
+
+          await supabase
+            .from("commerce_orders")
+            .update({
+              provider_order_id: String(printJob.id),
+              status: "FULFILLMENT_SUBMITTED",
+              failure_reason: null,
+              updated_at: new Date().toISOString(),
+            })
+            .eq("id", orderId);
+        } catch (fulfillmentError) {
+          console.error("[lulu fulfillment]", fulfillmentError);
+          await supabase
+            .from("commerce_orders")
+            .update({
+              status: "FAILED",
+              failure_reason:
+                fulfillmentError instanceof Error
+                  ? fulfillmentError.message
+                  : "Lulu fulfillment failed after payment.",
+              updated_at: new Date().toISOString(),
+            })
+            .eq("id", orderId);
+
+          return NextResponse.json(
+            { error: "Payment was recorded, but fulfillment submission failed." },
+            { status: 500 }
+          );
+        }
+      }
     }
   }
 
