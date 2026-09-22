@@ -21,6 +21,10 @@ export const MALCOLM_PRODUCT: StoreProduct = {
   stripeProductId: "prod_VIitadQhuLTQ96",
   stripePriceId: "price_1UI7RcCo4zEKqUT5QVLjaowj",
   provider: "lulu",
+  titleId: "CP-BK-BTB-MX-001",
   pageCount: 240,
+  podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
+  interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/Before_the_Bullet_The_Means_They_Feared_LULU_INTERIOR_6x9_240pp.pdf",
+  coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/Before_the_Bullet_The_Means_They_Feared_LULU_COVER_240pp.pdf",
   availableForDirectCheckout: true,
 };
