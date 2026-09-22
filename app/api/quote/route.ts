@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getProduct } from "@/lib/catalog";
+import { getStoreProduct } from "@/lib/store-products";
 import { getFulfillmentProvider } from "@/lib/fulfillment";
 import type { ShippingAddress } from "@/lib/types";
 
@@ -23,7 +23,7 @@ function validAddress(address: Partial<ShippingAddress> | undefined): address is
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const product = body.slug ? getProduct(body.slug) : undefined;
+  const product = body.slug ? getStoreProduct(body.slug) : undefined;
   const quantity = Number(body.quantity ?? 1);
 
   if (!product) return NextResponse.json({ error: "Unknown store product." }, { status: 404 });
