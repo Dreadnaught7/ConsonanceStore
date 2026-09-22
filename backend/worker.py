@@ -1,7 +1,7 @@
 import os
 import time
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import quote, urlparse
 
 import requests
 
@@ -39,13 +39,14 @@ def ingest_source(payload: dict[str, Any]) -> dict[str, Any]:
     response = requests.get(
         source_url,
         timeout=60,
-        headers={"User-Agent": "ConsonanceEvidenceEngine/0.3"},
+        headers={"User-Agent": "ConsonanceEvidenceEngine/0.4"},
     )
     response.raise_for_status()
 
     raw = response.content
     digest = sha256_bytes(raw)
     retrieved_at = utcnow()
+    requested_by = str(payload.get("requested_by") or "consonance-render-api")
 
     record = {
         "source_url": source_url,
@@ -57,7 +58,7 @@ def ingest_source(payload: dict[str, Any]) -> dict[str, Any]:
         "retrieved_at": retrieved_at,
         "metadata": {
             "http_status": response.status_code,
-            "requested_by": payload.get("requested_by"),
+            "requested_by": requested_by,
             "tags": payload.get("tags", []),
             "citation": payload.get("citation"),
             "repository": payload.get("repository"),
@@ -65,7 +66,7 @@ def ingest_source(payload: dict[str, Any]) -> dict[str, Any]:
             "source_date": payload.get("source_date"),
             "authentication_state": payload.get("authentication_state", "origin_unknown"),
             "visibility": payload.get("visibility", "internal"),
-            "ingest_engine": "consonance-render/0.3",
+            "ingest_engine": "consonance-render/0.4",
         },
     }
 
@@ -74,21 +75,50 @@ def ingest_source(payload: dict[str, Any]) -> dict[str, Any]:
         saved = rows[0] if isinstance(rows, list) and rows else rows
         duplicate = False
     except requests.HTTPError as exc:
-        # The unique index is (source_url, sha256). If the exact same content
-        # was already captured, return the existing record instead of failing.
         if exc.response is None or exc.response.status_code != 409:
             raise
+        encoded_url = quote(source_url, safe="")
         matches = db_get(
             "evidence_sources",
-            f"source_url=eq.{source_url}&sha256=eq.{digest}&select=*",
+            f"source_url=eq.{encoded_url}&sha256=eq.{digest}&select=*",
         )
         if not matches:
             raise
         saved = matches[0]
         duplicate = True
 
+    provenance_rows = db_insert(
+        "evidence_provenance_events",
+        {
+            "evidence_source_id": saved["id"],
+            "event_type": "source_reverified" if duplicate else "source_ingested",
+            "actor": requested_by,
+            "occurred_at": retrieved_at,
+            "details": {
+                "source_url": source_url,
+                "sha256": digest,
+                "byte_length": len(raw),
+                "content_type": response.headers.get("content-type"),
+                "http_status": response.status_code,
+                "duplicate": duplicate,
+                "retrieved_at": retrieved_at,
+                "authentication_state": payload.get("authentication_state", "origin_unknown"),
+                "visibility": payload.get("visibility", "internal"),
+                "ingest_engine": "consonance-render/0.4",
+            },
+        },
+    )
+    provenance = (
+        provenance_rows[0]
+        if isinstance(provenance_rows, list) and provenance_rows
+        else provenance_rows
+    )
+
     return {
         "evidence_source_id": saved.get("id") if isinstance(saved, dict) else None,
+        "provenance_event_id": (
+            provenance.get("id") if isinstance(provenance, dict) else None
+        ),
         "sha256": digest,
         "byte_length": len(raw),
         "duplicate": duplicate,
