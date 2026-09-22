@@ -37,7 +37,8 @@ export async function POST(request: NextRequest) {
     !product.currency ||
     !product.stripeProductId ||
     !product.stripePriceId ||
-    !product.provider
+    !product.provider ||
+    (product.provider === "lulu" && (!product.podPackageId || !product.interiorUrl || !product.coverUrl))
   ) {
     return NextResponse.json(
       { error: "Direct checkout is not enabled for this edition." },
