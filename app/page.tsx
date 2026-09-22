@@ -1,4 +1,4 @@
-// Deployment refresh: full book descriptions
+// Deployment refresh: live Vercel sync
 "use client";
 
 import React, { useEffect, useRef } from "react";
