@@ -1,49 +1,43 @@
 # Consonance Render Engine
 
-This branch adds the first deployable backend layer for Consonance without changing the live Vercel storefront.
-
 ## Free-phase service
 
-- consonance-api: public FastAPI gateway on Render's free web tier.
+- consonance-api: FastAPI gateway on Render's free web tier.
 - /health is public.
-- /ingest requires X-Consonance-Key and performs one synchronous source intake.
-- The paid persistent worker and cron are intentionally not provisioned yet.
+- All mutation and extraction routes require X-Consonance-Key.
+- Paid worker and cron remain intentionally disabled.
 
 ## Evidence intake
 
-SOURCE URL -> Render /ingest -> retrieve bytes -> SHA-256 -> evidence_sources -> evidence_provenance_events
+SOURCE -> /ingest -> retrieval -> SHA-256 -> evidence_sources -> evidence_provenance_events -> optional Observatory investigation binding
 
-The intake record stores source identity, fingerprint, retrieval metadata, provenance, authentication state, visibility and tags.
+## Claim extraction
 
-## Observatory routing
+POST /extract-claims with evidence_source_id.
 
-An ingest can optionally bind the resulting source directly into an existing Observatory investigation.
+The extractor:
+1. Re-fetches the preserved source URL.
+2. Treats source text as untrusted input.
+3. Uses GPT-5.6 Luna by default for low-cost structured extraction.
+4. Produces atomic claims only.
+5. Stores every new AI claim with review_state=proposed.
+6. Creates a typed evidence link and claim_provenance event.
+7. Carries proposed claims into any Observatory investigations already bound to the source.
+8. Never assigns a numeric confidence score.
+9. Never promotes a proposed claim to accepted automatically.
 
-Use either:
+OPENAI_API_KEY must be configured in Render before /extract-claims is usable.
+OPENAI_EXTRACTION_MODEL can optionally override the default gpt-5.6-luna model.
 
-- investigation_id
+## Human review
 
-or the human-readable pair:
+POST /claims/{claim_id}/review supports:
+- accepted
+- rejected
+- needs_review
 
-- thread_slug
-- investigation_title
-
-Optional investigation_role values:
-
-- primary
-- supporting
-- context
-- contradictory
-- background
-
-No Observatory routing is inferred. If routing fields are omitted, the source is preserved in the evidence engine without being attached to an investigation.
-
-## Current WHO WE ARE seed
-
-The NARA Freedmen's Bureau / Record Group 105 source and its first atomic claim are bound to the existing WHO ARE WE? / WHO WE ARE Observatory thread through:
-
-Freedmen's Bureau / Record Group 105 — Evidence Reconstruction Seed
+Every review creates a claim provenance event.
 
 ## Security
 
-The evidence and Observatory bridge tables have RLS enabled. No public policies are created for the free-phase engine; Render uses the Supabase service-role key. Never commit service-role credentials or API keys to GitHub.
+Evidence, extraction, provenance and Observatory bridge tables have RLS enabled with no public policies for the free-phase engine. Render uses the Supabase service-role key. Never expose service-role or Consonance API credentials in frontend code.
