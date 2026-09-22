@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 from common import db_get, db_insert, db_patch, utcnow
 
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "").strip()
 OPENAI_EXTRACTION_MODEL = os.environ.get("OPENAI_EXTRACTION_MODEL", "gpt-5.6-luna")
 PROMPT_VERSION = "claim-extractor-v0.1"
 MAX_SOURCE_CHARS = 80000
