@@ -6,7 +6,12 @@ from typing import Any
 
 import requests
 
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
+_RAW_SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
+SUPABASE_URL = (
+    _RAW_SUPABASE_URL[:-8]
+    if _RAW_SUPABASE_URL.endswith("/rest/v1")
+    else _RAW_SUPABASE_URL
+)
 SUPABASE_SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
 
 
