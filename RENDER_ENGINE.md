@@ -7,30 +7,43 @@ This branch adds the first deployable backend layer for Consonance without chang
 - consonance-api: public FastAPI gateway on Render's free web tier.
 - /health is public.
 - /ingest requires X-Consonance-Key and performs one synchronous source intake.
+- The paid persistent worker and cron are intentionally not provisioned yet.
 
-The paid persistent worker and cron are intentionally not provisioned yet.
+## Evidence intake
 
-## Current evidence intake
+SOURCE URL -> Render /ingest -> retrieve bytes -> SHA-256 -> evidence_sources -> evidence_provenance_events
 
-SOURCE URL -> Render /ingest -> retrieve bytes -> SHA-256 -> public.evidence_sources
+The intake record stores source identity, fingerprint, retrieval metadata, provenance, authentication state, visibility and tags.
 
-The intake record stores:
-- source URL
-- source type
-- title
-- SHA-256 fingerprint
-- content type
-- byte length
-- retrieval time
-- metadata including tags, citation, repository, authentication state, visibility and ingest engine
+## Observatory routing
 
-This is the stable intake layer. Entity resolution, claims, links, contradictions, confidence and richer Observatory graph structures can build on top of these records later.
+An ingest can optionally bind the resulting source directly into an existing Observatory investigation.
 
-## Database tables
+Use either:
 
-- public.consonance_jobs
-- public.evidence_sources
+- investigation_id
+
+or the human-readable pair:
+
+- thread_slug
+- investigation_title
+
+Optional investigation_role values:
+
+- primary
+- supporting
+- context
+- contradictory
+- background
+
+No Observatory routing is inferred. If routing fields are omitted, the source is preserved in the evidence engine without being attached to an investigation.
+
+## Current WHO WE ARE seed
+
+The NARA Freedmen's Bureau / Record Group 105 source and its first atomic claim are bound to the existing WHO ARE WE? / WHO WE ARE Observatory thread through:
+
+Freedmen's Bureau / Record Group 105 — Evidence Reconstruction Seed
 
 ## Security
 
-Never commit Supabase service-role credentials or API keys to GitHub.
+The evidence and Observatory bridge tables have RLS enabled. No public policies are created for the free-phase engine; Render uses the Supabase service-role key. Never commit service-role credentials or API keys to GitHub.
