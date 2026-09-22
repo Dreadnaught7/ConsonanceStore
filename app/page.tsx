@@ -131,7 +131,11 @@ export default function HomePage() {
                   <strong>{book.priceLabel}</strong>
                   <div className="book-actions">
                     <a className="book-details" href={"/books/" + book.slug}>Description + buy →</a>
-                    {book.buyButtonId && book.buyButtonVariant === "button-only" ? (
+                    {book.availableForDirectCheckout && book.stripePriceId ? (
+                      <a className="book-buy" href={"/books/" + book.slug}>
+                        Buy with Stripe
+                      </a>
+                    ) : book.buyButtonId && book.buyButtonVariant === "button-only" ? (
                       <div className="lulu-native-button compact">
                         {React.createElement("lulu-buy-button", {
                           "buy-button-id": book.buyButtonId,
@@ -140,7 +144,7 @@ export default function HomePage() {
                       </div>
                     ) : (
                       <a className="book-buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
-                        Buy direct
+                        Buy through Lulu
                       </a>
                     )}
                   </div>
