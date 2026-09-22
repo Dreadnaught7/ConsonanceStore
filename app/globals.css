@@ -844,3 +844,14 @@ button, input { font: inherit; }
   font-size: .66rem;
   letter-spacing: .04em;
 }
+
+
+.consonance-checkout {
+  margin-top: 4px;
+}
+.checkout-note {
+  margin: 10px 0 0;
+  color: #8f99a4;
+  font-size: .68rem;
+  line-height: 1.45;
+}
