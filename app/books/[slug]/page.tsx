@@ -1,15 +1,15 @@
 import React from "react";
+import BuyForm from "@/components/BuyForm";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getProduct, STORE_PRODUCTS } from "@/lib/catalog";
-import { MALCOLM_PRODUCT } from "@/lib/malcolm";
+import { getStoreProduct, getStoreProducts } from "@/lib/store-products";
 
 export function generateStaticParams() {
-  return [...STORE_PRODUCTS, MALCOLM_PRODUCT].map((book) => ({ slug: book.slug }));
+  return getStoreProducts().map((book) => ({ slug: book.slug }));
 }
 
 export default function BookPage({ params }: { params: { slug: string } }) {
-  const book = params.slug === MALCOLM_PRODUCT.slug ? MALCOLM_PRODUCT : getProduct(params.slug);
+  const book = getStoreProduct(params.slug);
   if (!book) notFound();
 
   return (
@@ -36,14 +36,19 @@ export default function BookPage({ params }: { params: { slug: string } }) {
             <strong>{book.priceLabel}</strong>
           </div>
 
-          {book.buyButtonId ? (
+          {book.availableForDirectCheckout && book.priceCents != null && book.stripePriceId ? (
+            <div className="consonance-checkout">
+              <BuyForm slug={book.slug} priceCents={book.priceCents} />
+              <p className="checkout-note">Secure payment by Stripe. Printing and shipping are fulfilled through Lulu.</p>
+            </div>
+          ) : book.buyButtonId ? (
             <div className={"lulu-native-button product-native " + (book.buyButtonVariant === "product-showcase" ? "showcase" : "compact")}>
               {React.createElement("lulu-buy-button", {
                 "buy-button-id": book.buyButtonId,
                 variant: book.buyButtonVariant || "button-only",
               })}
               <a className="native-fallback-link" href={book.checkoutUrl} target="_blank" rel="noreferrer">
-                Open direct checkout ↗
+                Open Lulu checkout ↗
               </a>
             </div>
           ) : (
@@ -53,7 +58,7 @@ export default function BookPage({ params }: { params: { slug: string } }) {
               target="_blank"
               rel="noreferrer"
             >
-              Buy direct ↗
+              Buy through Lulu ↗
             </a>
           )}
         </div>
