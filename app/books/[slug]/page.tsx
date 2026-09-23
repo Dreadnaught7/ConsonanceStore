@@ -1,5 +1,4 @@
 import React from "react";
-import BuyForm from "@/components/BuyForm";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getStoreProduct, getStoreProducts } from "@/lib/store-products";
@@ -49,31 +48,14 @@ export default function BookPage({ params }: { params: { slug: string } }) {
             <strong>{book.priceLabel}</strong>
           </div>
 
-          {book.availableForDirectCheckout && book.priceCents != null && book.stripePriceId ? (
-            <div className="consonance-checkout">
-              <BuyForm slug={book.slug} priceCents={book.priceCents} />
-              <p className="checkout-note">Secure payment by Stripe. Printing and shipping are fulfilled through Lulu.</p>
-            </div>
-          ) : book.buyButtonId ? (
-            <div className={"lulu-native-button product-native " + (book.buyButtonVariant === "product-showcase" ? "showcase" : "compact")}>
-              {React.createElement("lulu-buy-button", {
-                "buy-button-id": book.buyButtonId,
-                variant: book.buyButtonVariant || "button-only",
-              })}
-              <a className="native-fallback-link" href={book.checkoutUrl} target="_blank" rel="noreferrer">
-                Open Lulu checkout ↗
-              </a>
-            </div>
-          ) : (
-            <a
-              className="product-buy"
-              href={book.checkoutUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Buy through Lulu ↗
-            </a>
-          )}
+          <a
+            className="product-buy"
+            href={book.checkoutUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Buy through Lulu ↗
+          </a>
         </div>
       </section>
     </main>
