@@ -148,20 +148,15 @@ export default function HomePage() {
                   className="book-cover"
                   href={"/store/books/" + book.slug}
                   aria-label={"View " + book.name}
-                  style={
-                    book.coverImage
-                      ? { backgroundImage: `url("${book.coverImage}")` }
-                      : {
-                          background: "linear-gradient(160deg, #080808 0%, #24190b 52%, #080808 100%)",
-                          color: "#d8b15a",
-                          display: "grid",
-                          placeItems: "center",
-                          padding: "2rem",
-                          textAlign: "center",
-                        }
-                  }
                 >
-                  {!book.coverImage ? (
+                  {book.coverImage ? (
+                    <img
+                      src={book.coverImage}
+                      alt={book.name + (book.subtitle ? " — " + book.subtitle : "")}
+                      loading="eager"
+                      decoding="async"
+                    />
+                  ) : (
                     <span style={{ fontFamily: "Georgia, serif", fontWeight: 700, letterSpacing: "0.06em", lineHeight: 1.15 }}>
                       WHO ARE WE?<br />
                       <small style={{ display: "block", marginTop: "0.8rem", fontSize: "0.7em", letterSpacing: "0.12em" }}>
@@ -169,7 +164,7 @@ export default function HomePage() {
                       </small>
                       <span style={{ display: "block", marginTop: "0.35rem" }}>THE HUMAN LEDGER</span>
                     </span>
-                  ) : null}
+                  )}
                 </a>
                 <div className="book-card-copy">
                   <a className="book-title-link" href={"/store/books/" + book.slug}>
