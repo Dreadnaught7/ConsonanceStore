@@ -27,6 +27,27 @@ export type StoreProduct = {
 
 export const STORE_PRODUCTS: StoreProduct[] = [
   {
+    slug: "who-are-we-book-two-the-human-ledger",
+    name: "WHO ARE WE?",
+    subtitle: "Slavery, Its Descendants, and the Making of America — Book Two: The Human Ledger",
+    format: "Paperback · 6 × 9 · 143 pages · Direct edition",
+    priceLabel: "$29.99",
+    category: "history",
+    coverImage: "",
+    description: "What happens when the historical record does not simply describe a human being—but assigns that person a price?\n\nWHO ARE WE? — Book Two: The Human Ledger examines the economic machinery of American slavery through the records it left behind: valuations, mortgages, insurance policies, sales, inheritance documents, hiring agreements, compensation claims, shipping manifests, land records, and family archives. But this is not a book about numbers with people attached. It is about people whose lives were forced into systems of value—and what becomes visible when those records are reconstructed around the human being instead of the transaction.\n\nFrom Tobias Henson and Venture Smith to families divided by estates, people used as collateral, workers hiring out their labor, freed people purchasing land, and descendants rebuilding wealth and continuity, The Human Ledger follows the record beyond enslavement and into freedom, property, wages, inheritance, family, and memory.\n\nEach chapter treats the ledger as evidence, not truth. Prices reveal what institutions attempted to extract from human lives. They do not measure human worth. The ledger is evidence. The human being is the subject. No price will be allowed to stand in for the person.",
+    checkoutUrl:
+      "https://svc.lulu.com/?items=04519192-4cf0-464a-9a41-863e6db8dbea",
+    buyButtonId: "04519192-4cf0-464a-9a41-863e6db8dbea",
+    buyButtonVariant: "product-showcase",
+    priceCents: 2999,
+    currency: "usd",
+    provider: "lulu",
+    titleId: "CP-BK-WAW-002",
+    pageCount: 143,
+    podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
+    availableForDirectCheckout: false,
+  },
+  {
     slug: "before-the-bullet-a-dream-observed",
     name: "Before the Bullet: A Dream Observed",
     subtitle: "Martin Luther King Jr. and the America That Watched Him",
