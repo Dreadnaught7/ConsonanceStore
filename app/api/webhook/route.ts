@@ -4,6 +4,7 @@ import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { getStoreProduct } from "@/lib/store-products";
 import { submitLuluPrintJob } from "@/lib/lulu";
 import type { ShippingAddress } from "@/lib/types";
+import { sendOrderNotification } from "@/lib/order-notifications";
 
 export const runtime = "nodejs";
 
@@ -137,6 +138,36 @@ export async function POST(request: NextRequest) {
           );
         }
       }
+    }
+  }
+
+  if (confirmedPaid && !duplicate) {
+    try {
+      const { data: notificationOrder, error: notificationOrderError } = await supabase
+        .from("commerce_orders")
+        .select("id, product_slug, quantity, book_subtotal_cents, shipping_amount_cents, currency, customer_email, status, provider_order_id")
+        .eq("id", orderId)
+        .maybeSingle();
+
+      if (notificationOrderError || !notificationOrder) {
+        console.error("[order notification order read]", notificationOrderError);
+      } else {
+        const product = getStoreProduct(notificationOrder.product_slug);
+        await sendOrderNotification({
+          orderId: notificationOrder.id,
+          bookName: product?.name || notificationOrder.product_slug,
+          quantity: notificationOrder.quantity,
+          bookSubtotalCents: notificationOrder.book_subtotal_cents,
+          shippingAmountCents: notificationOrder.shipping_amount_cents,
+          currency: notificationOrder.currency,
+          customerEmail: notificationOrder.customer_email,
+          fulfillmentStatus: notificationOrder.status,
+          providerOrderId: notificationOrder.provider_order_id,
+        });
+      }
+    } catch (notificationError) {
+      // Never fail a paid order because an owner notification could not be sent.
+      console.error("[order notification]", notificationError);
     }
   }
 
