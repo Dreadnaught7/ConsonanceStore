@@ -239,7 +239,7 @@ export default function HomePage() {
       <footer className="site-footer">
         <div className="shell footer-inner">
           <div className="brand footer-brand">
-            <img className="brand-logo" src={CONSONANCE_LOGO} alt="Consonance logo" />
+            <ConsonanceMark />
             <span className="brand-copy">
               <b>CONSONANCE</b>
               <small>IDEAS FOR A MORE HUMAN TOMORROW</small>
