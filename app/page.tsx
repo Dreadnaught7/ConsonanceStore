@@ -202,10 +202,6 @@ export default function HomePage() {
       <section className="lower-grid" id="about">
         <div className="city-panel apollo-panel">
           <div className="panel-overlay" />
-          <blockquote>
-            “Good at having.<br />Terrible at holding.”
-            <span>— Eric J. Finkley</span>
-          </blockquote>
         </div>
 
         <div className="mission-panel">
@@ -243,13 +239,6 @@ export default function HomePage() {
         <div className="newsletter-panel">
           <div className="newsletter-photo" />
           <div className="newsletter-overlay" />
-          <div className="newsletter-copy">
-            <p className="eyebrow">STAY IN THE LOOP</p>
-            <h3>New releases, essays, and updates from Consonance.</h3>
-            <div className="newsletter-status">
-              <span>Newsletter signup coming soon.</span>
-            </div>
-          </div>
         </div>
       </section>
 
