@@ -465,7 +465,7 @@ button, input { font: inherit; }
 
 .apollo-panel {
   background:
-    url("/store/bedstuy.jpg")
+    url("https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/bedstuy.jpg")
     center / cover no-repeat;
 }
 
@@ -528,7 +528,7 @@ button, input { font: inherit; }
   position: absolute;
   inset: 0;
   background:
-    url("/store/midtown.jpg")
+    url("https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/midtown.jpg")
     center / cover no-repeat;
 }
 
