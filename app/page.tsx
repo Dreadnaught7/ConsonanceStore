@@ -4,6 +4,7 @@
 import React, { useEffect, useRef } from "react";
 import { STORE_PRODUCTS } from "@/lib/catalog";
 import { MALCOLM_PRODUCT } from "@/lib/malcolm";
+import { storeAsset } from "@/lib/store-asset";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1432183163557-d2779f981bd3?auto=format&fit=crop&q=88&w=2400";
 
@@ -151,7 +152,7 @@ export default function HomePage() {
                 >
                   {book.coverImage ? (
                     <img
-                      src={book.coverImage}
+                      src={storeAsset(book.coverImage)}
                       alt={book.name + (book.subtitle ? " — " + book.subtitle : "")}
                       loading="eager"
                       decoding="async"
