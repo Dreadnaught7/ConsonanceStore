@@ -203,7 +203,7 @@ export default function HomePage() {
         <div className="city-panel apollo-panel">
           <div className="panel-overlay" />
           <blockquote>
-            “Our stories were never the footnote.<br />They were the foundation.”
+            “Good at having.<br />Terrible at holding.”
             <span>— Eric J. Finkley</span>
           </blockquote>
         </div>
