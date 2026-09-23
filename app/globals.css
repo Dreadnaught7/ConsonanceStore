@@ -75,9 +75,58 @@ button, input { font: inherit; }
   width: 42px;
   height: 42px;
   display: block;
-  object-fit: cover;
-  border: 1px solid rgba(216,167,80,.45);
-  box-shadow: 0 8px 20px rgba(0,0,0,.24);
+}
+
+.brand-mark {
+  overflow: visible;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.28));
+}
+
+.signal-star,
+.signal-orb {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: signalPulse 6s ease-in-out infinite;
+}
+
+.signal-shimmer {
+  fill: rgba(255,224,133,0);
+  filter: blur(5px);
+  animation: signalShimmer 6s ease-in-out infinite;
+}
+
+.brand:hover .signal-star,
+.brand:hover .signal-orb {
+  animation: signalHover .9s ease-in-out;
+}
+
+.brand:hover .signal-shimmer {
+  animation: signalHoverGlow .9s ease-in-out;
+}
+
+@keyframes signalPulse {
+  0%, 72%, 100% { filter: brightness(1); transform: scale(1); }
+  78% { filter: brightness(1.75) drop-shadow(0 0 5px #f4ca67); transform: scale(1.05); }
+  84% { filter: brightness(1); transform: scale(1); }
+}
+
+@keyframes signalShimmer {
+  0%, 70%, 88%, 100% { fill: rgba(255,224,133,0); transform: scale(.55); }
+  79% { fill: rgba(255,224,133,.28); transform: scale(1.2); }
+}
+
+@keyframes signalHover {
+  0%, 100% { filter: brightness(1); transform: scale(1); }
+  50% { filter: brightness(1.9) drop-shadow(0 0 7px #f4ca67); transform: scale(1.07); }
+}
+
+@keyframes signalHoverGlow {
+  0%, 100% { fill: rgba(255,224,133,0); transform: scale(.6); }
+  50% { fill: rgba(255,224,133,.34); transform: scale(1.3); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal-star, .signal-orb, .signal-shimmer { animation: none; }
 }
 
 .brand-copy {
