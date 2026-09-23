@@ -7,7 +7,34 @@ import { MALCOLM_PRODUCT } from "@/lib/malcolm";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1432183163557-d2779f981bd3?auto=format&fit=crop&q=88&w=2400";
 
-const CONSONANCE_LOGO = "data:image/jpeg;base64,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";
+function ConsonanceMark() {
+  return (
+    <svg className="brand-logo brand-mark" viewBox="0 0 100 100" role="img" aria-label="Consonance">
+      <defs>
+        <linearGradient id="blueArc" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#0b3b8f" />
+          <stop offset="1" stopColor="#001f61" />
+        </linearGradient>
+        <linearGradient id="goldSignal" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#b77a12" />
+          <stop offset=".48" stopColor="#f6d778" />
+          <stop offset="1" stopColor="#b77a12" />
+        </linearGradient>
+        <radialGradient id="goldCore">
+          <stop offset="0" stopColor="#fff7c9" />
+          <stop offset=".32" stopColor="#f6d778" />
+          <stop offset="1" stopColor="#c58a1b" />
+        </radialGradient>
+      </defs>
+      <path d="M45 8C20 11 7 29 7 50s13 39 38 42C30 79 26 65 26 50S30 21 45 8Z" fill="url(#blueArc)" />
+      <path d="M55 8c25 3 38 21 38 42S80 89 55 92c15-13 19-27 19-42S70 21 55 8Z" fill="#080a0d" />
+      <line className="signal-line" x1="50" y1="5" x2="50" y2="95" stroke="url(#goldSignal)" strokeWidth="1.6" />
+      <path className="signal-star" d="M50 24C53 37 58 45 68 50c-10 5-15 13-18 26-3-13-8-21-18-26 10-5 15-13 18-26Z" fill="url(#goldCore)" />
+      <circle className="signal-orb" cx="50" cy="79" r="3.6" fill="url(#goldCore)" />
+      <circle className="signal-shimmer" cx="50" cy="50" r="13" />
+    </svg>
+  );
+}
 
 export default function HomePage() {
   const progressRef = useRef<HTMLDivElement>(null);
@@ -42,7 +69,7 @@ export default function HomePage() {
       <header className="site-header">
         <div className="shell header-inner">
           <a className="brand" href="#top">
-            <img className="brand-logo" src={CONSONANCE_LOGO} alt="Consonance logo" />
+            <ConsonanceMark />
             <span className="brand-copy">
               <b>CONSONANCE</b>
               <small>IDEAS FOR A MORE HUMAN TOMORROW</small>
