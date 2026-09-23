@@ -43,7 +43,7 @@ export default function BuyForm({ slug, priceCents }: { slug: string; priceCents
     setWorking(true);
     setMessage("");
     try {
-      const response = await fetch("/api/quote", {
+      const response = await fetch("/store/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ slug, quantity, address }),
@@ -64,7 +64,7 @@ export default function BuyForm({ slug, priceCents }: { slug: string; priceCents
     setWorking(true);
     setMessage("");
     try {
-      const response = await fetch("/api/checkout", {
+      const response = await fetch("/store/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ slug, quantity, address, shippingLevel: selected }),
