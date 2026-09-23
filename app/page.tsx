@@ -155,6 +155,8 @@ export default function HomePage() {
                       alt={book.name + (book.subtitle ? " — " + book.subtitle : "")}
                       loading="eager"
                       decoding="async"
+                      referrerPolicy="no-referrer"
+                      crossOrigin="anonymous"
                     />
                   ) : (
                     <span style={{ fontFamily: "Georgia, serif", fontWeight: 700, letterSpacing: "0.06em", lineHeight: 1.15 }}>
