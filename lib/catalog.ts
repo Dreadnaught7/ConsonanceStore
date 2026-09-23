@@ -72,7 +72,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/Before_the_Bullet_A_Dream_Observed_LULU_INTERIOR_FULL_BLEED_6.25x9.25_230pp.pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/Before_the_Bullet_A_Dream_Observed_LULU_FULL_COVER_6x9_230pp.pdf",
-    availableForDirectCheckout: true,
+    availableForDirectCheckout: false,
   },
   {
     slug: "who-are-we-book-one-the-record",
@@ -95,7 +95,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     podPackageId: "0850X1100.BW.STD.PB.060UW444.MXX",
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/WHO_ARE_WE_Book_One_The_Record_FINAL.pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/WHO_ARE_WE_Book_One_The_Record_LULU_FULL_WRAP_251pp.pdf",
-    availableForDirectCheckout: true,
+    availableForDirectCheckout: false,
   },
   {
     slug: "the-resonance-method-second-edition",
@@ -118,7 +118,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/The_Resonance_Method_Second_Edition_PRINT_INTERIOR_6x9_128pp.pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/The_Resonance_Method_Second_Edition_LULU_COVER_6x9_128pp.pdf",
-    availableForDirectCheckout: true,
+    availableForDirectCheckout: false,
   },
   {
     slug: "grounds-harlem",
@@ -143,7 +143,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     podPackageId: "0550X0850.BW.STD.PB.060UW444.MXX",
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/GROUNDS_Harlem_Lulu_5.5x8.5_Interior_FINAL.pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/GROUNDS_Harlem_Lulu_5.5x8.5_Full_Wrap_50pp.pdf",
-    availableForDirectCheckout: true,
+    availableForDirectCheckout: false,
   },
   {
     slug: "the-air-was-safe",
@@ -167,7 +167,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/The_Air_Was_Safe_Lulu_US_Trade_6x9_Interior_UPLOAD%20(1).pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/The_Air_Was_Safe_Lulu_Paperback_Cover_6x9_82pp_UPLOAD%20(1).pdf",
-    availableForDirectCheckout: true,
+    availableForDirectCheckout: false,
   },
 ];
 
