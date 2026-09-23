@@ -214,12 +214,34 @@ export default function HomePage() {
         </div>
 
         <div className="mission-panel">
-          <p className="eyebrow">CONSONANCE</p>
-          <h2>Independent ideas.<br />Real impact.</h2>
+          <p className="eyebrow">ABOUT CONSONANCE</p>
+          <h2>History is the beginning.<br />Human understanding is the mission.</h2>
           <p>
-            Consonance Publishing exists to explore the deeper questions — and to amplify
-            voices that challenge, connect, and inspire.
+            Consonance is an independent publishing and intelligence company built to connect
+            records, lived experience, technology, culture, and human stories that are too often
+            separated from one another. The books are one expression of that work: researched,
+            accessible ways to recover context, preserve memory, challenge incomplete narratives,
+            and give readers more of the record from which to form their own understanding.
           </p>
+          <p>
+            Beyond publishing, Consonance develops research systems, archives, tools, and
+            intelligence projects designed around a simple principle: information should help
+            people see more clearly without reducing their ability to choose. The goal is not to
+            tell people what to think. It is to build better ways to trace what happened, understand
+            why it matters, and carry useful knowledge forward.
+          </p>
+          <div className="founder-bio">
+            <p className="eyebrow">FOUNDER</p>
+            <h3>Eric J. Finkley</h3>
+            <p>
+              Eric J. Finkley is the founder of EJFinkley Holdings Inc., doing business as
+              Consonance, and the author behind Consonance Publishing. A New Yorker with more than
+              two decades of field-service experience, he brings a builder&apos;s approach to
+              research and storytelling: follow the evidence, connect the systems, and make the
+              result useful. His work spans history, technology, culture, archival research, and
+              the development of the Resonance Method.
+            </p>
+          </div>
           <a href="https://consonanceintelligence.com/" target="_blank" rel="noreferrer">Explore Consonance →</a>
         </div>
 
