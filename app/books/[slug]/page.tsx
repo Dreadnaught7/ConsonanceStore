@@ -18,11 +18,20 @@ export default function BookPage({ params }: { params: { slug: string } }) {
 
       <section className="product-detail-grid">
         <div className="product-cover-stage">
-          <img
-            className="product-cover-art"
-            src={book.coverImage}
-            alt={"Cover of " + book.name}
-          />
+          {book.coverImage ? (
+            <img
+              className="product-cover-art"
+              src={book.coverImage}
+              alt={"Cover of " + book.name}
+            />
+          ) : book.buyButtonId ? (
+            <div className="lulu-native-button product-native showcase">
+              {React.createElement("lulu-buy-button", {
+                "buy-button-id": book.buyButtonId,
+                variant: "product-showcase",
+              })}
+            </div>
+          ) : null}
         </div>
 
         <div className="product-direct">
