@@ -2,6 +2,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getStoreProduct, getStoreProducts } from "@/lib/store-products";
+import { storeAsset } from "@/lib/store-asset";
 
 export function generateStaticParams() {
   return getStoreProducts().map((book) => ({ slug: book.slug }));
@@ -20,7 +21,7 @@ export default function BookPage({ params }: { params: { slug: string } }) {
           {book.coverImage ? (
             <img
               className="product-cover-art"
-              src={book.coverImage}
+              src={storeAsset(book.coverImage)}
               alt={"Cover of " + book.name}
             />
           ) : book.buyButtonId ? (
