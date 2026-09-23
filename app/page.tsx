@@ -175,22 +175,9 @@ export default function HomePage() {
                   <strong>{book.priceLabel}</strong>
                   <div className="book-actions">
                     <a className="book-details" href={"/store/books/" + book.slug}>Description + buy →</a>
-                    {book.availableForDirectCheckout && book.stripePriceId ? (
-                      <a className="book-buy" href={"/store/books/" + book.slug}>
-                        Buy with Stripe
-                      </a>
-                    ) : book.buyButtonId && book.buyButtonVariant === "button-only" ? (
-                      <div className="lulu-native-button compact">
-                        {React.createElement("lulu-buy-button", {
-                          "buy-button-id": book.buyButtonId,
-                          variant: "button-only",
-                        })}
-                      </div>
-                    ) : (
-                      <a className="book-buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
-                        Buy through Lulu
-                      </a>
-                    )}
+                    <a className="book-buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
+                      Buy through Lulu
+                    </a>
                   </div>
                 </div>
               </article>
