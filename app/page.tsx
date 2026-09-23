@@ -84,7 +84,7 @@ export default function HomePage() {
             </a>
           </nav>
 
-          <a className="support-button" href="/books/the-air-was-safe">Support the work</a>
+          <a className="support-button" href="/store/books/the-air-was-safe">Support the work</a>
         </div>
       </header>
 
@@ -146,7 +146,7 @@ export default function HomePage() {
               <article className="book-card" key={book.slug}>
                 <a
                   className="book-cover"
-                  href={"/books/" + book.slug}
+                  href={"/store/books/" + book.slug}
                   aria-label={"View " + book.name}
                   style={
                     book.coverImage
@@ -172,16 +172,16 @@ export default function HomePage() {
                   ) : null}
                 </a>
                 <div className="book-card-copy">
-                  <a className="book-title-link" href={"/books/" + book.slug}>
+                  <a className="book-title-link" href={"/store/books/" + book.slug}>
                     <h3>{book.name}</h3>
                   </a>
                   {book.subtitle ? <p>{book.subtitle}</p> : null}
                   <span>Eric J. Finkley</span>
                   <strong>{book.priceLabel}</strong>
                   <div className="book-actions">
-                    <a className="book-details" href={"/books/" + book.slug}>Description + buy →</a>
+                    <a className="book-details" href={"/store/books/" + book.slug}>Description + buy →</a>
                     {book.availableForDirectCheckout && book.stripePriceId ? (
-                      <a className="book-buy" href={"/books/" + book.slug}>
+                      <a className="book-buy" href={"/store/books/" + book.slug}>
                         Buy with Stripe
                       </a>
                     ) : book.buyButtonId && book.buyButtonVariant === "button-only" ? (
