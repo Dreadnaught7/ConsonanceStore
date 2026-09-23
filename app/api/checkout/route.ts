@@ -77,7 +77,10 @@ export async function POST(request: NextRequest) {
 
   const orderId = crypto.randomUUID();
   const idempotencyKey = orderId + ":checkout";
-  const appUrl = process.env.APP_URL || request.nextUrl.origin;
+  const configuredAppUrl = (process.env.APP_URL || request.nextUrl.origin).replace(/\/$/, "");
+  const appUrl = configuredAppUrl.endsWith("/store")
+    ? configuredAppUrl
+    : configuredAppUrl + "/store";
 
   try {
     const supabase = getSupabaseAdmin();
