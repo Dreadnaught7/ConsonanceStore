@@ -655,7 +655,23 @@ button, input { font: inherit; }
   }
 
   .book-card {
-    grid-template-columns: 120px minmax(0,1fr);
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .book-cover {
+    width: min(220px, 100%);
+    justify-self: center;
+  }
+
+  .book-card-copy {
+    width: 100%;
+  }
+
+  .book-card-copy h3 {
+    margin-top: 0;
+    font-size: 1.15rem;
+    line-height: 1.1;
   }
 
   .lower-grid {
