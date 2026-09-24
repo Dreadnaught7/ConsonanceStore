@@ -158,6 +158,13 @@ export default function HomePage() {
                       loading="eager"
                       decoding="async"
                     />
+                  ) : book.buyButtonId ? (
+                    <div className="lulu-native-button product-native showcase">
+                      {React.createElement("lulu-buy-button", {
+                        "buy-button-id": book.buyButtonId,
+                        variant: "product-showcase",
+                      })}
+                    </div>
                   ) : (
                     <span style={{ fontFamily: "Georgia, serif", fontWeight: 700, letterSpacing: "0.04em", lineHeight: 1.15, textAlign: "center", padding: "1rem" }}>
                       {book.name}
