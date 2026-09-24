@@ -3,7 +3,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { STORE_PRODUCTS } from "@/lib/catalog";
-import { MALCOLM_PRODUCT } from "@/lib/malcolm";
+import { MALCOLM_PRODUCT } from "@/lib/malcolm";\nimport { HAMPTON_PRODUCT } from "@/lib/hampton";
 import { storeAsset } from "@/lib/store-asset";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1432183163557-d2779f981bd3?auto=format&fit=crop&q=88&w=2400";
@@ -61,7 +61,7 @@ export default function HomePage() {
     };
   }, []);
 
-  const featured = [...STORE_PRODUCTS, MALCOLM_PRODUCT];
+  const featured = [...STORE_PRODUCTS, MALCOLM_PRODUCT, HAMPTON_PRODUCT];
 
   return (
     <main className="store-page">
@@ -158,12 +158,13 @@ export default function HomePage() {
                       decoding="async"
                     />
                   ) : (
-                    <span style={{ fontFamily: "Georgia, serif", fontWeight: 700, letterSpacing: "0.06em", lineHeight: 1.15 }}>
-                      WHO ARE WE?<br />
-                      <small style={{ display: "block", marginTop: "0.8rem", fontSize: "0.7em", letterSpacing: "0.12em" }}>
-                        BOOK TWO
-                      </small>
-                      <span style={{ display: "block", marginTop: "0.35rem" }}>THE HUMAN LEDGER</span>
+                    <span style={{ fontFamily: "Georgia, serif", fontWeight: 700, letterSpacing: "0.04em", lineHeight: 1.15, textAlign: "center", padding: "1rem" }}>
+                      {book.name}
+                      {book.subtitle ? (
+                        <small style={{ display: "block", marginTop: "0.8rem", fontSize: "0.55em", letterSpacing: "0.08em", fontWeight: 500 }}>
+                          {book.subtitle}
+                        </small>
+                      ) : null}
                     </span>
                   )}
                 </a>
