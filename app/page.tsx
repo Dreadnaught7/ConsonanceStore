@@ -3,7 +3,8 @@
 
 import React, { useEffect, useRef } from "react";
 import { STORE_PRODUCTS } from "@/lib/catalog";
-import { MALCOLM_PRODUCT } from "@/lib/malcolm";\nimport { HAMPTON_PRODUCT } from "@/lib/hampton";
+import { MALCOLM_PRODUCT } from "@/lib/malcolm";
+import { HAMPTON_PRODUCT } from "@/lib/hampton";
 import { storeAsset } from "@/lib/store-asset";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1432183163557-d2779f981bd3?auto=format&fit=crop&q=88&w=2400";
