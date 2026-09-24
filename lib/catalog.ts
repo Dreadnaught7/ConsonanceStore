@@ -8,7 +8,7 @@ export type StoreProduct = {
   checkoutUrl: string;
   buyButtonId?: string;
   coverImage: string;
-  category: "history" | "method";
+  category: "history" | "method" | "fiction";
   titleId?: string;
   priceCents?: number;
   currency?: "usd";
@@ -38,6 +38,21 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     provider: "lulu",
     pageCount: 251,
     availableForDirectCheckout: true,
+  },
+  {
+    slug: "seven-suns-vnari-a-world-awake-second-edition",
+    name: "A World Awake",
+    subtitle: "Seven Suns of the V’Nari — Book One · Second Edition",
+    format: "Paperback · Second Edition · Direct edition",
+    priceLabel: "Buy direct",
+    category: "fiction",
+    coverImage: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/A%20world%20awake%202nd%20jpeg.png",
+    description: "The first truth was not light. It was awareness.\n\nA World Awake opens the Seven Suns of the V’Nari trilogy on Nu’Baana, a living world shaped by seven distinct civilizations, seven ways of understanding existence, and a history whose deepest truths have not vanished so much as fallen beyond ordinary recognition. Beneath seven separate lights, the lives of A’Saan, Q’Raa, K’Laa, S’Vaade and those around them begin to move toward discoveries that challenge what their people believe about memory, identity, attachment and the world that holds them.\n\nThe story begins intimately—with procession, family, responsibility, injury, love, distance and the quiet pressure of things left unresolved—then widens into something much larger. What first appears personal begins touching older structures, buried connections and a form of awareness that cannot be reduced to doctrine or power. The awakening is not presented as a gift without cost. Recognition changes relationships. Knowledge creates obligation. What is remembered can heal, divide or demand a choice.\n\nBook One establishes the emotional and philosophical foundation of the V’Nari saga: a world where consciousness, culture and belonging are inseparable from the living environment itself. This Second Edition carries the opening movement of the trilogy toward the progression that follows: awareness, understanding, and memory.",
+    checkoutUrl:
+      "https://svc.lulu.com/?items=1da2d5a9-71ba-4d78-bd35-7db2d8ed7dab",
+    buyButtonId: "1da2d5a9-71ba-4d78-bd35-7db2d8ed7dab",
+    provider: "lulu",
+    availableForDirectCheckout: false,
   },
   {
     slug: "the-resonance-method-second-edition",
