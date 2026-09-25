@@ -63,6 +63,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     buyButtonVariant: "product-showcase",
     provider: "lulu",
     pageCount: 239,
+    interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/AWAWAKEQR50%20(1).pdf",
     availableForDirectCheckout: false,
   },
   {
@@ -79,6 +80,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     buyButtonVariant: "product-showcase",
     provider: "lulu",
     pageCount: 423,
+    interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/Awr50bk2.pdf",
     availableForDirectCheckout: false,
   },
   {
