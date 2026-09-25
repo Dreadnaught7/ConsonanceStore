@@ -9,7 +9,7 @@ export type StoreProduct = {
   buyButtonId?: string;
   buyButtonVariant?: "button-only" | "product-showcase";
   coverImage: string;
-  category: "history" | "method";
+  category: "history" | "method" | "fiction";
   titleId?: string;
   priceCents?: number;
   currency?: "usd";
@@ -26,6 +26,22 @@ export type StoreProduct = {
 };
 
 export const STORE_PRODUCTS: StoreProduct[] = [
+  {
+    slug: "the-seven-suns-of-the-vnari-a-world-revealed-second-edition",
+    name: "The Seven Suns of the V’Nari: A World Revealed",
+    subtitle: "Book Two · Second Edition",
+    format: "Paperback · US Trade 6 × 9 · 423 pages · Second Edition",
+    priceLabel: "Lulu Direct",
+    category: "fiction",
+    coverImage: "",
+    description: "What was buried beneath balance has entered the open. The first death changed more than grief. V’Laa remains. Loss remains. And what Nu’Baana thought it understood about function, memory, and relation begins to give way under the pressure of revelation. As hidden histories surface and older truths refuse to stay contained, E’Vaana, K’Laa, A’Saan, and the Regents must confront a world no longer protected by partial understanding. A World Revealed continues The Seven Suns of the V’Nari with widening consequence, deeper memory, and the unfolding realization that a living world cannot remain whole by refusing to see what it has always carried.",
+    checkoutUrl: "https://svc.lulu.com/?items=e191b418-a66a-48e4-a311-a2f05aa6be7c",
+    buyButtonId: "e191b418-a66a-48e4-a311-a2f05aa6be7c",
+    buyButtonVariant: "product-showcase",
+    provider: "lulu",
+    pageCount: 423,
+    availableForDirectCheckout: false,
+  },
   {
     slug: "who-are-we-book-two-the-human-ledger",
     name: "WHO ARE WE?",
