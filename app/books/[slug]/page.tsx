@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react";\nimport type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getStoreProduct, getStoreProducts } from "@/lib/store-products";
@@ -6,6 +6,29 @@ import { storeAsset } from "@/lib/store-asset";
 
 export function generateStaticParams() {
   return getStoreProducts().map((book) => ({ slug: book.slug }));
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const book = getStoreProduct(params.slug);
+  if (!book) return {};
+  const title = book.subtitle ? `${book.name}: ${book.subtitle}` : book.name;
+  const description = book.description.split(/\n\n+/)[0].slice(0, 220);
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "book",
+      images: book.coverImage && !book.coverImage.startsWith("data:") ? [storeAsset(book.coverImage)] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: book.coverImage && !book.coverImage.startsWith("data:") ? [storeAsset(book.coverImage)] : undefined,
+    },
+  };
 }
 
 export default function BookPage({ params }: { params: { slug: string } }) {

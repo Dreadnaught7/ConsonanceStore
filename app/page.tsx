@@ -6,7 +6,7 @@ import { STORE_PRODUCTS } from "@/lib/catalog";
 import { MALCOLM_PRODUCT } from "@/lib/malcolm";
 import { HAMPTON_PRODUCT } from "@/lib/hampton";
 import { REEDS_PRODUCT } from "@/lib/reeds";
-import { storeAsset } from "@/lib/store-asset";
+import { storeAsset } from "@/lib/store-asset";\nimport { NewsletterSignup } from "@/components/NewsletterSignup";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1432183163557-d2779f981bd3?auto=format&fit=crop&q=88&w=2400";
 
@@ -119,7 +119,7 @@ export default function HomePage() {
             </p>
             <div className="hero-actions">
               <a className="button primary" href="#books">Browse books →</a>
-              <a className="button ghost" href="#about">Our mission</a>
+              <a className="button ghost" href="/store/press">Press + review room</a>
             </div>
           </div>
 
@@ -237,6 +237,11 @@ export default function HomePage() {
         <div className="newsletter-panel">
           <div className="newsletter-photo" />
           <div className="newsletter-overlay" />
+          <div className="newsletter-copy">
+            <p className="eyebrow">FROM THE WORK</p>
+            <h3>New releases, archival discoveries, excerpts, and useful context — without turning your inbox into a billboard.</h3>
+            <NewsletterSignup />
+          </div>
         </div>
       </section>
 
