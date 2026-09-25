@@ -27,6 +27,22 @@ export type StoreProduct = {
 
 export const STORE_PRODUCTS: StoreProduct[] = [
   {
+    slug: "the-seven-suns-of-the-vnari-a-world-awake-second-edition",
+    name: "The Seven Suns of the V’Nari: A World Awake",
+    subtitle: "Book One · Second Edition",
+    format: "Paperback · US Trade 6 × 9 · 239 pages · Second Edition",
+    priceLabel: "Lulu Direct",
+    category: "fiction",
+    coverImage: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/A%20world%20awake%202nd%20jpeg.png",
+    description: "The first truth was not light. It was awareness. On Nu’Baana, balance has always been treated as proof that the living world understands itself. But when subtle distortions begin moving through the Seven regions, the Regents discover that coherence can hide what a system has refused to recognize. E’Vaana, K’Laa, A’Saan, Q’Raa, Al’Turan, and the others are pulled toward a buried history tied to the Quickening, an unfinished life, and a form of Loss that has never been given a place. A World Awake begins The Seven Suns of the V’Nari with a story about memory, relation, identity, family, and what happens when a living world is forced to recognize what it excluded in order to remain whole.",
+    checkoutUrl: "https://svc.lulu.com/?items=1da2d5a9-71ba-4d78-bd35-7db2d8ed7dab",
+    buyButtonId: "1da2d5a9-71ba-4d78-bd35-7db2d8ed7dab",
+    buyButtonVariant: "product-showcase",
+    provider: "lulu",
+    pageCount: 239,
+    availableForDirectCheckout: false,
+  },
+  {
     slug: "the-seven-suns-of-the-vnari-a-world-revealed-second-edition",
     name: "The Seven Suns of the V’Nari: A World Revealed",
     subtitle: "Book Two · Second Edition",
