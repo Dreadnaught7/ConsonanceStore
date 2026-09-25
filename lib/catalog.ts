@@ -27,6 +27,24 @@ export type StoreProduct = {
 
 export const STORE_PRODUCTS: StoreProduct[] = [
   {
+    slug: "uncrossed",
+    name: "UNCROSSED",
+    format: "Paperback · US Trade 6 × 9 · 246 pages",
+    priceLabel: "Lulu Direct",
+    category: "fiction",
+    coverImage: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/UNCROSSED_STOREFRONT_FRONT_COVER.jpg",
+    description: "When a genealogist restores the identity of an enslaved woman erased from the historical record, she appears. Then others do. Across America, the dead begin returning as names, family lines, burial places, and forgotten histories are recovered. Some seek reunion. Some want truth. Some have waited too long to accept recognition without consequence.\n\nUNCROSSED is a contemporary supernatural horror novel about genealogy, ancestral memory, historical erasure, family, justice, and the terrifying possibility that the past has been waiting for the living to finally remember it.\n\nBuilt through Consonance Publishing’s distinctive research-driven storytelling method, UNCROSSED blends archival history, modern technology, family reconstruction, and supernatural terror into a story where discovering who came before you may be only the beginning.",
+    checkoutUrl: "https://svc.lulu.com/?items=202b723a-3291-4cac-89a7-c461febf3125",
+    buyButtonId: "202b723a-3291-4cac-89a7-c461febf3125",
+    buyButtonVariant: "product-showcase",
+    provider: "lulu",
+    titleId: "CP-BK-UNCROSSED-001",
+    pageCount: 246,
+    interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/UNCROSSED_FINAL_MANUSCRIPT_GMAIL_UNDER_25MB.pdf",
+    coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/UNCROSSED_COVER.pdf",
+    availableForDirectCheckout: false,
+  },
+  {
     slug: "who-are-we-book-one-the-record",
     name: "WHO ARE WE?",
     subtitle: "Slavery, Its Descendants, and the Making of America — Book One: The Record",
