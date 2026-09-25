@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from "react";
 import { STORE_PRODUCTS } from "@/lib/catalog";
 import { MALCOLM_PRODUCT } from "@/lib/malcolm";
 import { HAMPTON_PRODUCT } from "@/lib/hampton";
+import { REEDS_PRODUCT } from "@/lib/reeds";
 import { storeAsset } from "@/lib/store-asset";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1432183163557-d2779f981bd3?auto=format&fit=crop&q=88&w=2400";
@@ -62,7 +63,7 @@ export default function HomePage() {
     };
   }, []);
 
-  const featured = [...STORE_PRODUCTS, MALCOLM_PRODUCT, HAMPTON_PRODUCT];
+  const featured = [REEDS_PRODUCT, ...STORE_PRODUCTS, MALCOLM_PRODUCT, HAMPTON_PRODUCT];
 
   return (
     <main className="store-page">
