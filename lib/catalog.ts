@@ -33,7 +33,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     format: "Paperback · US Trade 6 × 9 · 423 pages · Second Edition",
     priceLabel: "Lulu Direct",
     category: "fiction",
-    coverImage: "",
+    coverImage: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/jpegawr.png",
     description: "What was buried beneath balance has entered the open. The first death changed more than grief. V’Laa remains. Loss remains. And what Nu’Baana thought it understood about function, memory, and relation begins to give way under the pressure of revelation. As hidden histories surface and older truths refuse to stay contained, E’Vaana, K’Laa, A’Saan, and the Regents must confront a world no longer protected by partial understanding. A World Revealed continues The Seven Suns of the V’Nari with widening consequence, deeper memory, and the unfolding realization that a living world cannot remain whole by refusing to see what it has always carried.",
     checkoutUrl: "https://svc.lulu.com/?items=e191b418-a66a-48e4-a311-a2f05aa6be7c",
     buyButtonId: "e191b418-a66a-48e4-a311-a2f05aa6be7c",
