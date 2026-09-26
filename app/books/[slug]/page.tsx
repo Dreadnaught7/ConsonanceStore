@@ -1,4 +1,5 @@
-import React from "react";\nimport type { Metadata } from "next";
+import React from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getStoreProduct, getStoreProducts } from "@/lib/store-products";
