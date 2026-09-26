@@ -17,6 +17,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title,
     description,
+    alternates: { canonical: `https://consonanceintelligence.com/store/books/${book.slug}` },
     openGraph: {
       title,
       description,
@@ -35,6 +36,28 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 export default function BookPage({ params }: { params: { slug: string } }) {
   const book = getStoreProduct(params.slug);
   if (!book) notFound();
+
+  const bookSchema = {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    name: book.name,
+    alternateName: book.subtitle || undefined,
+    description: book.description.split(/\\n\\n+/)[0],
+    url: `https://consonanceintelligence.com/store/books/${book.slug}`,
+    author: {
+      "@type": "Person",
+      "@id": "https://consonanceintelligence.com/#eric-j-finkley",
+      name: "Eric J. Finkley",
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": "https://consonanceintelligence.com/store#publishing",
+      name: "Consonance Publishing",
+    },
+    numberOfPages: book.pageCount || undefined,
+    isbn: book.isbn || undefined,
+    image: book.coverImage && !book.coverImage.startsWith("data:") ? storeAsset(book.coverImage) : undefined,
+  };
 
   return (
     <main className="product-page">
@@ -83,6 +106,10 @@ export default function BookPage({ params }: { params: { slug: string } }) {
           </a>
         </div>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(bookSchema) }}
+      />
     </main>
   );
 }
