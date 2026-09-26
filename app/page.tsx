@@ -6,7 +6,8 @@ import { STORE_PRODUCTS } from "@/lib/catalog";
 import { MALCOLM_PRODUCT } from "@/lib/malcolm";
 import { HAMPTON_PRODUCT } from "@/lib/hampton";
 import { REEDS_PRODUCT } from "@/lib/reeds";
-import { storeAsset } from "@/lib/store-asset";\nimport { NewsletterSignup } from "@/components/NewsletterSignup";
+import { storeAsset } from "@/lib/store-asset";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1432183163557-d2779f981bd3?auto=format&fit=crop&q=88&w=2400";
 
@@ -81,7 +82,8 @@ export default function HomePage() {
 
           <nav>
             <a href="#books">Books</a>
-            <a href="#about">About</a>\n            <a href="/store/institutions">Libraries + Classrooms</a>
+            <a href="#about">About</a>
+            <a href="/store/institutions">Libraries + Classrooms</a>
             <a href="https://consonanceintelligence.com/" target="_blank" rel="noreferrer">
               Intelligence ↗
             </a>
