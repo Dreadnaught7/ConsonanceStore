@@ -1178,3 +1178,47 @@ button, input { font: inherit; }
     line-height: 1.62;
   }
 }
+
+
+/* Institutional acquisition hero */
+.institutional-hero {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 28px;
+  padding: 86px 54px 72px;
+  border: 1px solid rgba(255,255,255,.10);
+  background:
+    linear-gradient(90deg, rgba(3,6,10,.94) 0%, rgba(3,6,10,.78) 46%, rgba(3,6,10,.42) 100%),
+    linear-gradient(180deg, rgba(3,6,10,.18), rgba(3,6,10,.72)),
+    url("/store/institutions-brooklyn-night-hero.jpg") center 48% / cover no-repeat;
+  box-shadow: inset 0 -90px 120px rgba(0,0,0,.24);
+}
+.institutional-hero > * {
+  position: relative;
+  z-index: 1;
+}
+.institutional-hero h1 {
+  max-width: 760px;
+  text-shadow: 0 3px 24px rgba(0,0,0,.55);
+}
+.institutional-hero > p:not(.eyebrow) {
+  max-width: 700px;
+  color: #eef1f4;
+  text-shadow: 0 2px 18px rgba(0,0,0,.70);
+}
+.institutional-hero .button.ghost {
+  background: rgba(3,6,10,.66);
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 760px) {
+  .institutional-hero {
+    margin-inline: -6px;
+    padding: 54px 28px 46px;
+    background-position: 58% center;
+  }
+  .institutional-hero h1 {
+    font-size: 2.9rem;
+    line-height: .96;
+  }
+}
