@@ -81,7 +81,7 @@ export default function HomePage() {
 
           <nav>
             <a href="#books">Books</a>
-            <a href="#about">About</a>
+            <a href="#about">About</a>\n            <a href="/store/institutions">Libraries + Classrooms</a>
             <a href="https://consonanceintelligence.com/" target="_blank" rel="noreferrer">
               Intelligence ↗
             </a>
