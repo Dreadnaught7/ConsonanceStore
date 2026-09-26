@@ -42,9 +42,8 @@ export default function InstitutionalPage() {
       <section className="institutional-page-hero">
         <img
           className="institutional-page-hero-photo"
-          src="/store/institutions-brooklyn-night-hero.jpg"
-          alt=""
-          aria-hidden="true"
+          src="https://images.unsplash.com/photo-1740583302016-e17f5b00ebc0?auto=format&fit=crop&fm=jpg&q=88&w=3000"
+          alt="Brooklyn Bridge at night with the Manhattan skyline beyond it"
         />
         <div className="institutional-page-hero-overlay" />
         <div className="press-shell institutional-hero-shell">
