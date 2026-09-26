@@ -1075,3 +1075,106 @@ button, input { font: inherit; }
   .press-hero { padding-top: 42px; }
   .press-hero h1 { font-size: 3.4rem; }
 }
+
+
+/* Mobile stack hardening: keep newsletter and mission sections from colliding */
+@media (max-width: 760px) {
+  .lower-grid {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .city-panel,
+  .mission-panel,
+  .newsletter-panel {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .newsletter-panel {
+    grid-column: auto;
+    min-height: 0;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .newsletter-photo,
+  .newsletter-overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .newsletter-copy {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 34px 28px 48px;
+  }
+
+  .newsletter-copy h3 {
+    max-width: none;
+    margin: 12px 0 22px;
+    font-size: 1.08rem;
+    line-height: 1.45;
+  }
+
+  .newsletter-form {
+    width: 100%;
+    max-width: none;
+    gap: 16px;
+  }
+
+  .newsletter-form fieldset {
+    padding: 14px;
+  }
+
+  .newsletter-options {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .newsletter-options label {
+    min-height: 26px;
+    align-items: flex-start;
+    font-size: .72rem;
+    line-height: 1.35;
+  }
+
+  .newsletter-form button {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 2px;
+  }
+
+  .newsletter-form-status,
+  .newsletter-form small {
+    display: block;
+    position: static;
+    width: 100%;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .newsletter-form small {
+    padding-bottom: 2px;
+    font-size: .66rem;
+  }
+
+  .mission-panel {
+    position: relative;
+    z-index: 1;
+    padding: 44px 28px 50px;
+  }
+
+  .mission-panel h2 {
+    font-size: 1.8rem;
+    line-height: 1.06;
+  }
+
+  .mission-panel p {
+    max-width: none;
+    font-size: .82rem;
+    line-height: 1.62;
+  }
+}
