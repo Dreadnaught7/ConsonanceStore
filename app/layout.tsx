@@ -4,7 +4,20 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: { default: "Consonance Publishing", template: "%s | Consonance Publishing" },
-  description: "Independent books in documentary history, archival reconstruction, New York history, method, speculative fiction, and contemporary American fiction.",\n  keywords: ["Consonance Publishing", "Eric J. Finkley", "documentary history", "Black history", "genealogy", "New York history", "independent publishing", "speculative fiction"],\n  metadataBase: new URL("https://consonanceintelligence.com/store"),\n  openGraph: {\n    title: "Consonance Publishing",\n    description: "Books, research, memory, culture, and ideas for a more human tomorrow.",\n    type: "website",\n    siteName: "Consonance Publishing",\n  },\n  twitter: {\n    card: "summary_large_image",\n    title: "Consonance Publishing",\n    description: "Books, research, memory, culture, and ideas for a more human tomorrow.",\n  },
+  description: "Independent books in documentary history, archival reconstruction, New York history, method, speculative fiction, and contemporary American fiction.",
+  keywords: ["Consonance Publishing", "Eric J. Finkley", "documentary history", "Black history", "genealogy", "New York history", "independent publishing", "speculative fiction"],
+  metadataBase: new URL("https://consonanceintelligence.com/store"),
+  openGraph: {
+    title: "Consonance Publishing",
+    description: "Books, research, memory, culture, and ideas for a more human tomorrow.",
+    type: "website",
+    siteName: "Consonance Publishing",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Consonance Publishing",
+    description: "Books, research, memory, culture, and ideas for a more human tomorrow.",
+  },
   authors: [{ name: "EJFinkley Holdings Inc." }],
   icons: {
     icon: [{ url: "/store/consonance-favicon.svg", type: "image/svg+xml" }],
