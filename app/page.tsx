@@ -120,7 +120,7 @@ export default function HomePage() {
               and what comes next.
             </p>
             <div className="hero-actions">
-              <a className="button primary" href="#books">Browse books →</a>
+              <a className="button primary" href="#reader-list">Join the reader list →</a>
               <a className="button ghost" href="/store/press">Press + review room</a>
             </div>
           </div>
@@ -236,7 +236,7 @@ export default function HomePage() {
           <a href="https://consonanceintelligence.com/" target="_blank" rel="noreferrer">Explore Consonance →</a>
         </div>
 
-        <div className="newsletter-panel">
+        <div className="newsletter-panel" id="reader-list">
           <div className="newsletter-photo" />
           <div className="newsletter-overlay" />
           <div className="newsletter-copy">
