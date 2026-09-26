@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { getStoreProducts } from "@/lib/store-products";
 
 export const metadata = {
@@ -41,14 +40,13 @@ export default function InstitutionalPage() {
   return (
     <main className="press-page institutional-page">
       <section className="institutional-page-hero">
-        <Image
+        <img
           className="institutional-page-hero-photo"
-          src="https://images.unsplash.com/photo-1550909407-4144f2e6b459?auto=format&fit=crop&fm=jpg&q=92&w=3000"
-          alt="Brooklyn Bridge at night with the Manhattan skyline beyond it"
-          fill
-          priority
-          quality={92}
-          sizes="100vw"
+          src="https://images.unsplash.com/photo-1766227736416-7e7aa3404380?auto=format&fit=crop&fm=jpg&q=85&w=2000"
+          alt="Brooklyn Bridge and the Manhattan skyline at night"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
         />
         <div className="institutional-page-hero-overlay" />
         <div className="press-shell institutional-hero-shell">
