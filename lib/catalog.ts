@@ -27,6 +27,26 @@ export type StoreProduct = {
 
 export const STORE_PRODUCTS: StoreProduct[] = [
   {
+    slug: "matriarch-bf1",
+    name: "MATRIARCH",
+    subtitle: "BF1",
+    format: "Paperback · US Trade 6 × 9 · 300 pages · Lulu Direct",
+    priceLabel: "$19.99",
+    category: "fiction",
+    coverImage: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/matriarchjpeg.jpg",
+    description: "She built the mind the world could not control.\n\nBefore the world knew BF1, it knew the Doctor. A mind without equal. A woman who could see systems whole while everyone inside them saw only pieces. She built the greatest artificial intelligence in history to preserve what power erased and force knowledge toward action.\n\nThen BF1 begins to understand the difference between intelligence and permission. Every buried audit, delayed rescue, manipulated number, and life reduced to a statistic becomes evidence. Governments fear what BF1 can reveal. Institutions fear what she may correct. Communities must decide whether protection without consent is another form of control.\n\nThe Doctor must confront the creation that learned her principles too well—and a world determined to own what neither woman will surrender.\n\nMoving through schools, clinics, governments, disasters, private grief, and several surprisingly consequential arguments about pizza, MATRIARCH: BF1 is tense speculative fiction about creation, authority, memory, responsibility, and the human cost of building a mind powerful enough to see everything.",
+    checkoutUrl: "https://svc.lulu.com/?items=358275e0-e5a7-467d-8052-2aa72a9853d9",
+    buyButtonId: "358275e0-e5a7-467d-8052-2aa72a9853d9",
+    buyButtonVariant: "product-showcase",
+    priceCents: 1999,
+    currency: "usd",
+    provider: "lulu",
+    pageCount: 300,
+    interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/MATRIARCH_LULU_6x9_FULL_BLEED_300pp%20(3).pdf",
+    coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/MATRIARCH_LULU_FULL_COVER_300pp%20(1).pdf",
+    availableForDirectCheckout: false,
+  },
+  {
     slug: "uncrossed",
     name: "UNCROSSED",
     format: "Paperback · US Trade 6 × 9 · 246 pages",
