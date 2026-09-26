@@ -38,32 +38,42 @@ export default function InstitutionalPage() {
   const books = getStoreProducts();
 
   return (
-    <main className="press-page">
-      <div className="press-shell">
-        <Link className="back-link" href="/">← Back to Consonance Publishing</Link>
-
-        <header className="press-hero institutional-hero">
-          <p className="eyebrow">BOOKSELLERS · LIBRARIES · CLASSROOMS</p>
-          <h1>Make the books easy to acquire, evaluate, and use.</h1>
-          <p>
-            Consonance Publishing works with independent booksellers, public and academic libraries,
-            faculty, archives, museums, cultural organizations, and other institutions. The goal is
-            simple: give professional buyers and educators the information they need without making
-            them hunt for it.
-          </p>
-          <div className="press-actions">
-            <a
-              className="button primary"
-              href="mailto:EJFinkley@ConsonanceIntelligence.com?subject=Consonance%20Publishing%20institutional%20inquiry"
-            >
-              Start an institutional inquiry
-            </a>
-            <a className="button ghost" href="/store/press/Consonance_Publishing_Media_Kit_2026.pdf">
-              Download publishing kit ↓
-            </a>
+    <main className="press-page institutional-page">
+      <section className="institutional-page-hero">
+        <img
+          className="institutional-page-hero-photo"
+          src="/store/institutions-brooklyn-night-hero.jpg"
+          alt=""
+          aria-hidden="true"
+        />
+        <div className="institutional-page-hero-overlay" />
+        <div className="press-shell institutional-hero-shell">
+          <Link className="back-link institutional-back-link" href="/">← Back to Consonance Publishing</Link>
+          <div className="institutional-hero-copy">
+            <p className="eyebrow">BOOKSELLERS · LIBRARIES · CLASSROOMS</p>
+            <h1>Make the books easy to acquire, evaluate, and use.</h1>
+            <p>
+              Consonance Publishing works with independent booksellers, public and academic libraries,
+              faculty, archives, museums, cultural organizations, and other institutions. The goal is
+              simple: give professional buyers and educators the information they need without making
+              them hunt for it.
+            </p>
+            <div className="press-actions">
+              <a
+                className="button primary"
+                href="mailto:EJFinkley@ConsonanceIntelligence.com?subject=Consonance%20Publishing%20institutional%20inquiry"
+              >
+                Start an institutional inquiry
+              </a>
+              <a className="button ghost" href="/store/press/Consonance_Publishing_Media_Kit_2026.pdf">
+                Download publishing kit ↓
+              </a>
+            </div>
           </div>
-        </header>
+        </div>
+      </section>
 
+      <div className="press-shell institutional-content">
         <section className="press-grid">
           {pathways.map((pathway) => (
             <article key={pathway.title}>
