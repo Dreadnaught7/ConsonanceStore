@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getStoreProducts } from "@/lib/store-products";
 
 export const metadata = {
@@ -40,10 +41,14 @@ export default function InstitutionalPage() {
   return (
     <main className="press-page institutional-page">
       <section className="institutional-page-hero">
-        <img
+        <Image
           className="institutional-page-hero-photo"
-          src="https://images.unsplash.com/photo-1740583302016-e17f5b00ebc0?auto=format&fit=crop&fm=jpg&q=88&w=3000"
+          src="https://images.unsplash.com/photo-1550909407-4144f2e6b459?auto=format&fit=crop&fm=jpg&q=92&w=3000"
           alt="Brooklyn Bridge at night with the Manhattan skyline beyond it"
+          fill
+          priority
+          quality={92}
+          sizes="100vw"
         />
         <div className="institutional-page-hero-overlay" />
         <div className="press-shell institutional-hero-shell">
