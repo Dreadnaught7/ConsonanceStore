@@ -1331,3 +1331,23 @@ button, input { font: inherit; }
     padding-top: 36px;
   }
 }
+
+
+/* Classroom hero alignment with the storefront hero treatment */
+.institutional-page-hero-photo {
+  filter: none;
+  transform: none;
+  image-rendering: auto;
+}
+
+.institutional-page-hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(4,7,10,.92) 0%, rgba(4,7,10,.70) 34%, rgba(4,7,10,.28) 70%, rgba(4,7,10,.36) 100%),
+    linear-gradient(180deg, rgba(3,6,9,.10), rgba(3,6,9,.52));
+}
+
+@media (max-width: 760px) {
+  .institutional-page-hero-photo {
+    object-position: 50% center;
+  }
+}
