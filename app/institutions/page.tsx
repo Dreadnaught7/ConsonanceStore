@@ -42,7 +42,7 @@ export default function InstitutionalPage() {
       <div className="press-shell">
         <Link className="back-link" href="/">← Back to Consonance Publishing</Link>
 
-        <header className="press-hero">
+        <header className="press-hero institutional-hero">
           <p className="eyebrow">BOOKSELLERS · LIBRARIES · CLASSROOMS</p>
           <h1>Make the books easy to acquire, evaluate, and use.</h1>
           <p>
