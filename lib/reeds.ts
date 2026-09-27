@@ -13,6 +13,7 @@ export const REEDS_PRODUCT: StoreProduct = {
   buyButtonId: "d8f6368d-8b30-47b0-a1c5-2fd2f3cc1572",
   buyButtonVariant: "product-showcase",
   priceCents: 1999,
+  readerPriceCents: 1699,
   currency: "usd",
   provider: "lulu",
   titleId: "CP-BK-ATR-001",
