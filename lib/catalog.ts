@@ -12,6 +12,7 @@ export type StoreProduct = {
   category: "history" | "method" | "fiction";
   titleId?: string;
   priceCents?: number;
+  readerPriceCents?: number;
   currency?: "usd";
   stripeProductId?: string;
   stripePriceId?: string;
@@ -39,6 +40,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     buyButtonId: "358275e0-e5a7-467d-8052-2aa72a9853d9",
     buyButtonVariant: "product-showcase",
     priceCents: 1999,
+    readerPriceCents: 1699,
     currency: "usd",
     provider: "lulu",
     pageCount: 300,
@@ -76,6 +78,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     checkoutUrl:
       "https://svc.lulu.com/?items=d8b832c3-6f2e-44e3-890f-1bd0777d6731",
     priceCents: 2999,
+    readerPriceCents: 2499,
     currency: "usd",
     stripeProductId: "prod_VIitez3GG2A7Lo",
     stripePriceId: "price_1UI7RqCo4zEKqUT5eB5jhYYR",
@@ -153,6 +156,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     buyButtonId: "04519192-4cf0-464a-9a41-863e6db8dbea",
     buyButtonVariant: "product-showcase",
     priceCents: 2999,
+    readerPriceCents: 2299,
     currency: "usd",
     provider: "lulu",
     titleId: "CP-BK-WAW-002",
@@ -176,6 +180,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     buyButtonId: "13ddeb0c-1c42-4a02-9f4d-ce20520b6ad8",
     buyButtonVariant: "product-showcase",
     priceCents: 2499,
+    readerPriceCents: 1999,
     currency: "usd",
     stripeProductId: "prod_VIit77Na9Ss6CX",
     stripePriceId: "price_1UI7U3Co4zEKqUT5OPNH0fx7",
@@ -200,6 +205,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     checkoutUrl:
       "https://svc.lulu.com/?items=c36f44ae-dc16-451e-86ad-99929d9c2186",
     priceCents: 1699,
+    readerPriceCents: 1499,
     currency: "usd",
     stripeProductId: "prod_VIitghHTjiYtJl",
     stripePriceId: "price_1UI7RsCo4zEKqUT5c5wMpzoh",
@@ -243,6 +249,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     buyButtonId: "2e105102-6127-43b3-a019-9d0d2dbf9bf1",
     buyButtonVariant: "button-only",
     priceCents: 1999,
+    readerPriceCents: 1799,
     currency: "usd",
     stripeProductId: "prod_VI7s2XuZA7y9UI",
     stripePriceId: "price_1UI7RtCo4zEKqUT5BflH0lgj",
@@ -267,6 +274,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
       "https://svc.lulu.com/?items=2fc771d6-ffc7-4421-b062-93f85aea265b",
     titleId: "CP-BK-911-001",
     priceCents: 1599,
+    readerPriceCents: 1499,
     currency: "usd",
     stripeProductId: "prod_VI52lJDTWcUKzq",
     stripePriceId: "price_1UHUsRCo4zEKqUT5FsHieBjb",
