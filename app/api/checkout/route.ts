@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStoreProduct } from "@/lib/store-products";
 import { getFulfillmentProvider } from "@/lib/fulfillment";
-import { createCheckoutSession } from "@/lib/stripe";
+import { createSquarePaymentLink } from "@/lib/square";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import type { ShippingAddress } from "@/lib/types";
 
@@ -30,13 +30,12 @@ export async function POST(request: NextRequest) {
 
   if (!product) return NextResponse.json({ error: "Unknown store product." }, { status: 404 });
 
+  const salePriceCents = product.readerPriceCents ?? product.priceCents;
   if (
     !product.availableForDirectCheckout ||
     !product.titleId ||
-    product.priceCents == null ||
+    salePriceCents == null ||
     !product.currency ||
-    !product.stripeProductId ||
-    !product.stripePriceId ||
     !product.provider ||
     (product.provider === "lulu" && (!product.podPackageId || !product.interiorUrl || !product.coverUrl))
   ) {
@@ -76,7 +75,7 @@ export async function POST(request: NextRequest) {
   }
 
   const orderId = crypto.randomUUID();
-  const idempotencyKey = orderId + ":checkout";
+  const idempotencyKey = orderId + ":square-checkout";
   const configuredAppUrl = (process.env.APP_URL || request.nextUrl.origin).replace(/\/$/, "");
   const appUrl = configuredAppUrl.endsWith("/store")
     ? configuredAppUrl
@@ -91,39 +90,40 @@ export async function POST(request: NextRequest) {
       product_slug: product.slug,
       provider: product.provider,
       provider_project_id: product.providerProjectId ?? null,
-      stripe_product_id: product.stripeProductId,
-      stripe_price_id: product.stripePriceId,
+      stripe_product_id: null,
+      stripe_price_id: null,
       customer_email: body.address.email,
       shipping_address: body.address,
       quantity,
-      book_subtotal_cents: product.priceCents * quantity,
+      book_subtotal_cents: salePriceCents * quantity,
       shipping_amount_cents: shipping.amountCents,
       currency: product.currency,
       shipping_level: shipping.level,
       quote_payload: shipping.raw ?? shipping,
       status: "QUOTED",
       idempotency_key: idempotencyKey,
+      payment_processor: "square",
     });
 
     if (insertError) throw insertError;
 
-    const session = await createCheckoutSession({
-      priceId: product.stripePriceId,
+    const paymentLink = await createSquarePaymentLink({
+      product,
       quantity,
       shippingAmountCents: shipping.amountCents,
-      shippingLabel: "Shipping — " + shipping.label,
-      customerEmail: body.address.email,
+      shippingLabel: shipping.label,
+      address: body.address,
       orderId,
-      titleId: product.titleId,
       appUrl,
-      productSlug: product.slug,
       idempotencyKey,
     });
 
     const { error: updateError } = await supabase
       .from("commerce_orders")
       .update({
-        stripe_session_id: session.id,
+        square_payment_link_id: paymentLink.paymentLinkId,
+        square_order_id: paymentLink.squareOrderId,
+        payment_session_id: paymentLink.paymentLinkId,
         status: "CHECKOUT_CREATED",
         updated_at: new Date().toISOString(),
       })
@@ -131,9 +131,9 @@ export async function POST(request: NextRequest) {
 
     if (updateError) throw updateError;
 
-    return NextResponse.json({ checkoutUrl: session.url, orderId });
+    return NextResponse.json({ checkoutUrl: paymentLink.url, orderId });
   } catch (error) {
-    console.error("[store checkout]", error);
+    console.error("[store square checkout]", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Checkout could not be created." },
       { status: 503 }
