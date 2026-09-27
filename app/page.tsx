@@ -89,7 +89,7 @@ export default function HomePage() {
             </a>
           </nav>
 
-          <a className="support-button" href="/store/books/the-air-was-safe">Support the work</a>
+          <a className="support-button" href="/store/support">Support the work</a>
         </div>
       </header>
 
