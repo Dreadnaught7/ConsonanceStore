@@ -33,6 +33,27 @@ export async function POST(request: NextRequest) {
     console.error("[square webhook persistence]", error);
     return NextResponse.json({ error: "Webhook persistence failed." }, { status: 500 });
   }
+  if (error?.code === "23505") {
+    return NextResponse.json({ received: true, duplicate: true });
+  }
 
-  return NextResponse.json({ received: true, duplicate: error?.code === "23505" });
+  const payment = event?.data?.object?.payment;
+  if (event.type === "payment.updated" && payment?.status === "COMPLETED" && payment?.order_id) {
+    const { error: paidError } = await supabase
+      .from("commerce_orders")
+      .update({
+        status: "PAID",
+        payment_processor: "square",
+        payment_id: payment.id || null,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("square_order_id", payment.order_id);
+
+    if (paidError) {
+      console.error("[square webhook paid update]", paidError);
+      return NextResponse.json({ error: "Order payment update failed." }, { status: 500 });
+    }
+  }
+
+  return NextResponse.json({ received: true, duplicate: false });
 }
