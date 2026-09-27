@@ -16,6 +16,8 @@ export type StoreProduct = {
   currency?: "usd";
   stripeProductId?: string;
   stripePriceId?: string;
+  squareItemId?: string;
+  squareVariationId?: string;
   provider?: "lulu" | "ingram_manual";
   providerProjectId?: string;
   isbn?: string;
@@ -46,6 +48,8 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     pageCount: 300,
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/MATRIARCH_LULU_6x9_FULL_BLEED_300pp%20(3).pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/MATRIARCH_LULU_FULL_COVER_300pp%20(1).pdf",
+    squareItemId: "B3FYGJ7APDLCONHKWRHS5H35",
+    squareVariationId: "FIXFVB6TKMRBDIJZWLVLAM7Z",
     availableForDirectCheckout: false,
   },
   {
@@ -64,6 +68,8 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     pageCount: 246,
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/UNCROSSED_FINAL_MANUSCRIPT_GMAIL_UNDER_25MB.pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/UNCROSSED_COVER.pdf",
+    squareItemId: "UKIGK5BIC6XD7GQMI3Y4EII4",
+    squareVariationId: "YUQUHY7WHPIFMI4XISVY5JSJ",
     availableForDirectCheckout: false,
   },
   {
@@ -88,6 +94,8 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     podPackageId: "0850X1100.BW.STD.PB.060UW444.MXX",
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/WHO_ARE_WE_Book_One_The_Record_FINAL.pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/WHO_ARE_WE_Book_One_The_Record_LULU_FULL_WRAP_251pp.pdf",
+    squareItemId: "2P74G3IWGM24BUXX77PGQ3OB",
+    squareVariationId: "EYFBFZH45BKBC3A3VZEQZQTB",
     availableForDirectCheckout: true,
   },
   {
@@ -164,6 +172,8 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/WHO_ARE_WE_Book_Two_The_Human_Ledger_FINAL_MANUSCRIPT_FULL_BLEED.pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/WHO_ARE_WE_Book_Two_The_Human_Ledger_LULU_FULL_COVER_300PPI_QA.pdf",
+    squareItemId: "RBPX2OSROG3DZIJTQQSXK4KB",
+    squareVariationId: "IDM4KI3TVGNAJHLGTWBAMHPS",
     availableForDirectCheckout: false,
   },
   {
@@ -190,6 +200,8 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/Before_the_Bullet_A_Dream_Observed_LULU_INTERIOR_FULL_BLEED_6.25x9.25_230pp.pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/Before_the_Bullet_A_Dream_Observed_LULU_FULL_COVER_6x9_230pp.pdf",
+    squareItemId: "CDNAVSHWVZWGVKRIMJ4BZWF2",
+    squareVariationId: "4VPYB3FORYYFQT7RJLFN3SEO",
     availableForDirectCheckout: false,
   },
 
@@ -215,6 +227,8 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/The_Resonance_Method_Second_Edition_PRINT_INTERIOR_6x9_128pp.pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/The_Resonance_Method_Second_Edition_LULU_COVER_6x9_128pp.pdf",
+    squareItemId: "LP6MLEDTW5ICEPKOP6TWIFBN",
+    squareVariationId: "FVGBGAIAVISR3QVQEYCXWKAH",
     availableForDirectCheckout: false,
   },
   {
@@ -259,6 +273,8 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     podPackageId: "0550X0850.BW.STD.PB.060UW444.MXX",
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/GROUNDS_Harlem_Lulu_5.5x8.5_Interior_FINAL.pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/GROUNDS_Harlem_Lulu_5.5x8.5_Full_Wrap_50pp.pdf",
+    squareItemId: "MSNORWNJ4ZFJE4WLZX6QNY6D",
+    squareVariationId: "F3PBWNTWEIXCKNFID2NLGBYJ",
     availableForDirectCheckout: false,
   },
   {
@@ -284,6 +300,8 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
     interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/The_Air_Was_Safe_Lulu_US_Trade_6x9_Interior_UPLOAD%20(1).pdf",
     coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/The_Air_Was_Safe_Lulu_Paperback_Cover_6x9_82pp_UPLOAD%20(1).pdf",
+    squareItemId: "K4GMQELX56H6AG6PN6FGNV25",
+    squareVariationId: "BQQEJKJJ2M2XRGBYXOY45UCO",
     availableForDirectCheckout: false,
   },
 ];
