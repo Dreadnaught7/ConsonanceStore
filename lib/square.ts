@@ -1,6 +1,7 @@
 import crypto from "node:crypto";
 import type { StoreProduct } from "@/lib/catalog";
 import type { ShippingAddress } from "@/lib/types";
+import { squareVariationIdFor } from "@/lib/square-catalog-map";
 
 const DEFAULT_BASE_URL = "https://connect.squareup.com";
 const DEFAULT_VERSION = "2026-09-16";
@@ -61,6 +62,17 @@ export async function createSquarePaymentLink(args: {
   const unitPrice = args.product.readerPriceCents ?? args.product.priceCents;
   if (unitPrice == null) throw new Error("Reader price is not configured for this title.");
 
+  const squareVariationId = args.product.squareVariationId || squareVariationIdFor(args.product.slug);
+  if (!squareVariationId) throw new Error("Square catalog variation is not configured for this title.");
+
+  const catalogData = await squareFetch("/v2/catalog/object/" + encodeURIComponent(squareVariationId), {
+    method: "GET",
+  });
+  const squarePrice = catalogData?.object?.item_variation_data?.price_money;
+  if (!squarePrice || squarePrice.currency !== "USD" || squarePrice.amount !== unitPrice) {
+    throw new Error("Square catalog price does not match the Consonance reader price.");
+  }
+
   const body = {
     idempotency_key: args.idempotencyKey,
     description: `Consonance Publishing order ${args.orderId}`,
@@ -70,9 +82,8 @@ export async function createSquarePaymentLink(args: {
       reference_id: args.orderId,
       line_items: [
         {
-          name: args.product.name,
+          catalog_object_id: squareVariationId,
           quantity: String(args.quantity),
-          base_price_money: { amount: unitPrice, currency: "USD" },
         },
         {
           name: `Shipping — ${args.shippingLabel}`,
