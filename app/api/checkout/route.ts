@@ -30,6 +30,16 @@ export async function POST(request: NextRequest) {
 
   if (!product) return NextResponse.json({ error: "Unknown store product." }, { status: 404 });
 
+  if (
+    process.env.SQUARE_DIRECT_CHECKOUT_ENABLED !== "true" ||
+    process.env.SQUARE_SALES_TAX_READY !== "true"
+  ) {
+    return NextResponse.json(
+      { error: "Direct checkout is not enabled yet. Please use the current Lulu purchase link." },
+      { status: 409 }
+    );
+  }
+
   const salePriceCents = product.readerPriceCents ?? product.priceCents;
   if (
     !product.availableForDirectCheckout ||
