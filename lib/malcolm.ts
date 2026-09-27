@@ -16,6 +16,7 @@ export const MALCOLM_PRODUCT: StoreProduct = {
   buyButtonId: "4571577e-afab-488d-9a02-3fcfc68b4d54",
   buyButtonVariant: "product-showcase",
   priceCents: 2499,
+  readerPriceCents: 1999,
   currency: "usd",
   stripeProductId: "prod_VIitadQhuLTQ96",
   stripePriceId: "price_1UI7RcCo4zEKqUT5QVLjaowj",
