@@ -15,6 +15,9 @@ export default function SupportPage({
 }) {
   const thanked = searchParams?.thanks === "1";
   const error = searchParams?.error;
+  const supportCheckoutReady = Boolean(
+    process.env.SQUARE_ACCESS_TOKEN && process.env.SQUARE_LOCATION_ID
+  );
 
   return (
     <main className="product-page">
@@ -50,45 +53,55 @@ export default function SupportPage({
             represented as a charitable or tax-deductible donation.
           </p>
 
-          <form action="/store/api/support" method="post" style={{ marginTop: "30px" }}>
-            <p className="product-kicker">CHOOSE AN AMOUNT</p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", margin: "14px 0 24px" }}>
-              {[10, 25, 50, 100, 250].map((amount) => (
-                <button
-                  className="button primary"
-                  type="submit"
-                  name="amount"
-                  value={amount}
-                  key={amount}
-                >
-                  ${amount}
-                </button>
-              ))}
-            </div>
+          {supportCheckoutReady ? (
+            <form action="/store/api/support" method="post" style={{ marginTop: "30px" }}>
+              <p className="product-kicker">CHOOSE AN AMOUNT</p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", margin: "14px 0 24px" }}>
+                {[10, 25, 50, 100, 250].map((amount) => (
+                  <button
+                    className="button primary"
+                    type="submit"
+                    name="amount"
+                    value={amount}
+                    key={amount}
+                  >
+                    ${amount}
+                  </button>
+                ))}
+              </div>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "end" }}>
-              <label style={{ display: "grid", gap: "8px", minWidth: "220px" }}>
-                <span>Other amount (USD)</span>
-                <input
-                  name="amount"
-                  type="number"
-                  min="5"
-                  max="5000"
-                  step="1"
-                  placeholder="75"
-                  style={{
-                    minHeight: "44px",
-                    borderRadius: "8px",
-                    border: "1px solid rgba(255,255,255,.16)",
-                    background: "#0d1218",
-                    color: "inherit",
-                    padding: "0 14px",
-                  }}
-                />
-              </label>
-              <button className="button primary" type="submit">Continue to Square →</button>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "end" }}>
+                <label style={{ display: "grid", gap: "8px", minWidth: "220px" }}>
+                  <span>Other amount (USD)</span>
+                  <input
+                    name="amount"
+                    type="number"
+                    min="5"
+                    max="5000"
+                    step="1"
+                    placeholder="75"
+                    style={{
+                      minHeight: "44px",
+                      borderRadius: "8px",
+                      border: "1px solid rgba(255,255,255,.16)",
+                      background: "#0d1218",
+                      color: "inherit",
+                      padding: "0 14px",
+                    }}
+                  />
+                </label>
+                <button className="button primary" type="submit">Continue to Square →</button>
+              </div>
+            </form>
+          ) : (
+            <div style={{ marginTop: "30px", padding: "22px", border: "1px solid rgba(255,255,255,.12)", background: "#0d1218" }}>
+              <p className="product-kicker">DIRECT SUPPORT CHECKOUT</p>
+              <p style={{ marginBottom: 0 }}>
+                Direct contribution checkout is being activated. The support page is live now;
+                payment controls will appear automatically when the production Square connection is available.
+              </p>
             </div>
-          </form>
+          )}
 
           <p style={{ marginTop: "30px" }}>
             Prefer to support by buying a book? <Link href="/#books">Browse the current catalog →</Link>
