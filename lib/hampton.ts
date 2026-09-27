@@ -16,5 +16,6 @@ export const HAMPTON_PRODUCT: StoreProduct = {
   provider: "lulu",
   titleId: "CP-BK-BTB-001",
   pageCount: 238,
+  readerPriceCents: 1999,
   availableForDirectCheckout: true,
 };
