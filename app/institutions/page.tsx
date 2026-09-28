@@ -113,6 +113,17 @@ export default function InstitutionalPage() {
 
         <section className="press-grid press-grid-contact">
           <article>
+            <h3>Volume pricing</h3>
+            <p>
+              Multi-copy pricing is available beginning at five copies. Classroom, program,
+              museum, nonprofit, book-club, and institutional orders are quoted by title,
+              quantity, shipping destination, and fulfillment method.
+            </p>
+            <a href="mailto:EJFinkley@ConsonanceIntelligence.com?subject=Consonance%20Publishing%20bulk%20order%20quote">
+              Request a volume quote →
+            </a>
+          </article>
+          <article>
             <h3>Review + desk copies</h3>
             <p>
               Digital review and desk copies are available selectively for reviewers, librarians,
