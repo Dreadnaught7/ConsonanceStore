@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getStoreProduct, getStoreProducts } from "@/lib/store-products";
 import { storeAsset } from "@/lib/store-asset";
+import { directCommerceUrl, hasDirectCommerce } from "@/lib/direct-commerce";
 
 export function generateStaticParams() {
   return getStoreProducts().map((book) => ({ slug: book.slug }));
@@ -96,14 +97,33 @@ export default function BookPage({ params }: { params: { slug: string } }) {
             <strong>{book.priceLabel}</strong>
           </div>
 
-          <a
-            className="product-buy"
-            href={book.checkoutUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Buy through Lulu ↗
-          </a>
+          {hasDirectCommerce(book.slug) ? (
+            <div className="book-actions">
+              <a
+                className="product-buy"
+                href={directCommerceUrl(book.slug)}
+              >
+                Buy direct from Consonance →
+              </a>
+              <a
+                className="book-details"
+                href={book.checkoutUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Or buy through Lulu ↗
+              </a>
+            </div>
+          ) : (
+            <a
+              className="product-buy"
+              href={book.checkoutUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Buy through Lulu ↗
+            </a>
+          )}
         </div>
       </section>
       <script
