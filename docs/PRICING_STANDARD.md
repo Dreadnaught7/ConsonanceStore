@@ -46,3 +46,8 @@ Do not advertise one price and charge another.
 ## Accounting
 
 QuickBooks is the accounting system of record for title-level revenue. Physical print-on-demand books are represented as non-inventory products unless Consonance begins stocking units directly. Production charges, payment-processing fees, shipping, refunds, and other transaction costs should be recorded separately so title margin can be measured from actual data.
+
+
+## Pending cost review
+
+GROUNDS: Bed-Stuy remains pending final page-count / print-cost review before a reader price is assigned. Do not publish a lower price until the production floor is confirmed.
