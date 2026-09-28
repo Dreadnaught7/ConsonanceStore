@@ -8,6 +8,7 @@ import { HAMPTON_PRODUCT } from "@/lib/hampton";
 import { REEDS_PRODUCT } from "@/lib/reeds";
 import { storeAsset } from "@/lib/store-asset";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
+import { directCommerceUrl, hasDirectCommerce } from "@/lib/direct-commerce";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1432183163557-d2779f981bd3?auto=format&fit=crop&q=88&w=2400";
 
@@ -188,9 +189,15 @@ export default function HomePage() {
                   <strong>{book.priceLabel}</strong>
                   <div className="book-actions">
                     <a className="book-details" href={"/store/books/" + book.slug}>Description + buy →</a>
-                    <a className="book-buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
-                      Buy through Lulu
-                    </a>
+                    {hasDirectCommerce(book.slug) ? (
+                      <a className="book-buy" href={directCommerceUrl(book.slug)}>
+                        Buy direct
+                      </a>
+                    ) : (
+                      <a className="book-buy" href={book.checkoutUrl} target="_blank" rel="noreferrer">
+                        Buy through Lulu
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>
