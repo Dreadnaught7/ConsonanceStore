@@ -26,5 +26,7 @@ export const MALCOLM_PRODUCT: StoreProduct = {
   podPackageId: "0600X0900.BW.STD.PB.060UW444.MXX",
   interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/Before_the_Bullet_The_Means_They_Feared_LULU_INTERIOR_6x9_240pp.pdf",
   coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/Before_the_Bullet_The_Means_They_Feared_LULU_COVER_240pp.pdf",
+  squareItemId: "NTUZL4BK4WYDBKMK465YIHU5",
+  squareVariationId: "TOTPTBFA7CVPSTPSNGN2PIVY",
   availableForDirectCheckout: false,
 };
