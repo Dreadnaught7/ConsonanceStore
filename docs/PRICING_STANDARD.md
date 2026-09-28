@@ -11,6 +11,7 @@ Canonical reader-price targets are stored on each configured title as `readerPri
 | Title | Reader price |
 | --- | ---: |
 | MATRIARCH: BF1 | $16.99 |
+| UNCROSSED | $16.99 |
 | WHO ARE WE? — Book One: The Record | $24.99 |
 | WHO ARE WE? — Book Two: The Human Ledger | $22.99 |
 | Before the Bullet: Target: Black Messiah | $19.99 |
@@ -18,11 +19,14 @@ Canonical reader-price targets are stored on each configured title as `readerPri
 | Before the Bullet: The Means They Feared | $19.99 |
 | The Resonance Method — Second Edition | $14.99 |
 | GROUNDS: Harlem | $17.99 |
+| GROUNDS: Bed-Stuy | $17.99 |
 | The Air Was Safe | $14.99 |
 | Among the Reeds | $16.99 |
-| UNCROSSED | $16.99 |
+| The Seven Suns of the V’Nari: A World Awake — Second Edition | $17.99 |
+| The Seven Suns of the V’Nari: A World Revealed — Second Edition | $19.99 |
+| The Seven Suns of the V’Nari: A World Remembered — Second Edition | $18.99 |
 
-Titles without a canonical reader price remain pending production-cost review.
+All current catalog titles now have a canonical reader-price target. Public display prices remain tied to the active sale route until the corresponding transaction path is synchronized.
 
 ## Institutional and bulk pricing
 
