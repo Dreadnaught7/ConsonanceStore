@@ -12,7 +12,8 @@ const DIRECT_COMMERCE_SLUGS = new Set([
 ]);
 
 export function hasDirectCommerce(slug: string) {
-  return DIRECT_COMMERCE_SLUGS.has(slug);
+  const launchReady = false;
+  return launchReady && DIRECT_COMMERCE_SLUGS.has(slug);
 }
 
 export function directCommerceUrl(slug: string) {
