@@ -20,5 +20,7 @@ export const REEDS_PRODUCT: StoreProduct = {
   pageCount: 272,
   interiorUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/AMONG_THE_REEDS_INTERIOR_SUPABASE_UNDER_50MB.pdf",
   coverUrl: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/AMONG_THE_REEDS_LULU_COVER_272P_FULL_BLEED.pdf",
+  squareItemId: "BUMKQQFHO4GTJD6DB6EBRWQC",
+  squareVariationId: "I5QJXX6KRAVIRSXNPA6L2JY3",
   availableForDirectCheckout: false,
 };
