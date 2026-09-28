@@ -24,3 +24,8 @@ The store repository remains separate from the Founder Dashboard.
 Every new or revised Consonance Publishing book must include a tested QR code in the back matter linking to the public catalog at `https://consonanceintelligence.com/store`, with the printed URL shown as an alternative.
 
 See `docs/INTERIOR_QR_CATALOG_STANDARD.md` for the production requirements.
+
+
+## Cloudflare storefront deployment
+
+Production storefront builds are configured for Cloudflare Workers from the `main` branch.
