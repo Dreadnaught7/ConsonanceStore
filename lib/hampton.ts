@@ -17,5 +17,7 @@ export const HAMPTON_PRODUCT: StoreProduct = {
   titleId: "CP-BK-BTB-001",
   pageCount: 238,
   readerPriceCents: 1999,
+  squareItemId: "ZM724OSFOWMZ3L3CG6TJZ4AY",
+  squareVariationId: "E36P4ZHOAIU2U5PIMX5IB2IO",
   availableForDirectCheckout: true,
 };
