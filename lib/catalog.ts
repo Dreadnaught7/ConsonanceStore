@@ -327,6 +327,26 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     squareVariationId: "BQQEJKJJ2M2XRGBYXOY45UCO",
     availableForDirectCheckout: false,
   },
+  {
+    slug: "what-we-keep",
+    name: "What We Keep",
+    subtitle: "An American Family Novel",
+    format: "Paperback · 5.5 × 8.5 · 238 pages · Lulu Direct",
+    priceLabel: "$19.99",
+    category: "fiction",
+    coverImage: "",
+    description: "When a family death turns an old New York apartment building into disputed ground, every drawer, envelope, key, and keepsake becomes evidence.\n\nGloria Mercer never expected her brother Calvin to leave behind a multimillion-dollar Harlem property—or a family trust that forces everyone she loves to decide what inheritance really means.\n\nSome see freedom in selling. Others see history worth preserving. The tenants see something more immediate: home.\n\nAs relatives circle the property, old tensions rise and forgotten records begin to surface. Money orders, photographs, labor receipts, letters, and family memories reveal that the building may have had one legal owner, but it was made possible by many hands.\n\nNow the Mercer family must decide what can be sold, what must be protected, and what deserves to be carried forward.\n\nSet inside the intimate pressure of New York family life, What We Keep is a layered novel about inheritance, Black family wealth, Caribbean and Black American identity, memory, grief, ownership, and the hidden cost of legacy.",
+    checkoutUrl: "https://svc.lulu.com/?items=ad1af7f6-f5b9-4bc4-858f-29c66efa43be",
+    buyButtonId: "ad1af7f6-f5b9-4bc4-858f-29c66efa43be",
+    buyButtonVariant: "product-showcase",
+    priceCents: 1999,
+    readerPriceCents: 1799,
+    currency: "usd",
+    provider: "lulu",
+    titleId: "CP-BK-WWK-001",
+    pageCount: 238,
+    availableForDirectCheckout: false,
+  },
 ];
 
 export function getProduct(slug: string) {
