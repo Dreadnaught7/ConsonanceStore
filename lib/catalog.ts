@@ -82,7 +82,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     format: "Paperback · US Trade 6 × 9 · 227 pages · Lulu Direct",
     priceLabel: "Lulu Direct",
     category: "fiction",
-    coverImage: "",
+    coverImage: "https://gvpbolcmawwjufuvjmqa.supabase.co/storage/v1/object/public/lulu-print-files/till%20we%20meet%20jpg.png",
     description: "Across decades in New York City, Simone Carter and Malcolm Johnson repeatedly pass through the same schools, neighborhoods, relationships, workplaces, hospitals, and ordinary afternoons without truly meeting. Their earlier loves, children, work, grief, and choices are not detours from the story; they are what make the eventual meeting matter. TILL WE MEET is a life-spanning romance about timing, memory, becoming, and two people learning that proximity was never the same thing as readiness.",
     checkoutUrl: "https://svc.lulu.com/?items=ad1af7f6-f5b9-4bc4-858f-29c66efa43be",
     buyButtonId: "ad1af7f6-f5b9-4bc4-858f-29c66efa43be",
