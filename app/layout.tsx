@@ -76,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
+        <Script src="/store/consonance-attribution.js" strategy="afterInteractive" />
         <Script src="https://js.lulu.com/lulu-buy.js" strategy="afterInteractive" />
       </body>
     </html>
